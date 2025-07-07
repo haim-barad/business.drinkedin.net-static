@@ -2,6 +2,14 @@
 
 This guide covers deploying the DrinkedIn business site to various static hosting platforms.
 
+## 🚀 Cloudflare Pages Quick Reference
+
+**Essential Settings:**
+- Framework preset: **None** (not VitePress)
+- Build command: `npm install && npm run build`
+- Build output directory: `dist`
+- Node.js version: 18+
+
 ## Quick Start
 
 1. **Build the project:**
@@ -17,17 +25,22 @@ This guide covers deploying the DrinkedIn business site to various static hostin
 
 1. Connect your GitHub repository to Cloudflare Pages
 2. Set build configuration:
-   - **Framework preset**: None (leave blank)
+   - **Framework preset**: None (leave blank) - Do NOT select "VitePress" as that's different
    - **Build command**: `npm install && npm run build`
    - **Build output directory**: `dist`
    - **Root directory**: (leave blank)
    - **Node.js version**: 18 or later
 3. Deploy automatically on git push
 
+**Important Notes for Cloudflare Pages:**
+- **Framework preset must be "None"** - Cloudflare has "VitePress" but that's for VitePress sites, not Vite builds
+- VitePress ≠ Vite (VitePress is a static site generator, Vite is a build tool)
+- Our project uses Vite as a build tool, so select "None" for framework preset
+
 **Troubleshooting Cloudflare Pages:**
 - If you get "Module not found" errors, ensure the build command includes `npm install &&`
 - Make sure the Node.js version is set to 18 or later in Cloudflare Pages settings
-- The framework preset should be left blank, not set to "Vite"
+- DO NOT select "VitePress" - that's for different projects
 - Verify the build output directory is exactly `dist` (not `./dist` or `/dist`)
 
 ### Netlify
