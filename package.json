@@ -1,0 +1,24 @@
+{
+  "name": "business.drinkedin.net-static",
+  "version": "1.0.0",
+  "description": "Static version of business.drinkedin.net",
+  "main": "src/index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "prettier --write src/**/*.{html,css,js}",
+    "lint": "eslint src/**/*.js"
+  },
+  "keywords": ["alcohol", "marketing", "platform", "drinkedin"],
+  "author": "DrinkedIn Business",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^4.4.0",
+    "prettier": "^3.0.0",
+    "eslint": "^8.44.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.4.0"
+  }
+}
