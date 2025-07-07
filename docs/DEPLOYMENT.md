@@ -17,10 +17,18 @@ This guide covers deploying the DrinkedIn business site to various static hostin
 
 1. Connect your GitHub repository to Cloudflare Pages
 2. Set build configuration:
-   - **Framework preset**: Vite
-   - **Build command**: `npm run build`
+   - **Framework preset**: None (leave blank)
+   - **Build command**: `npm install && npm run build`
    - **Build output directory**: `dist`
+   - **Root directory**: (leave blank)
+   - **Node.js version**: 18 or later
 3. Deploy automatically on git push
+
+**Troubleshooting Cloudflare Pages:**
+- If you get "Module not found" errors, ensure the build command includes `npm install &&`
+- Make sure the Node.js version is set to 18 or later in Cloudflare Pages settings
+- The framework preset should be left blank, not set to "Vite"
+- Verify the build output directory is exactly `dist` (not `./dist` or `/dist`)
 
 ### Netlify
 

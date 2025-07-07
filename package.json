@@ -2,11 +2,13 @@
   "name": "business.drinkedin.net-static",
   "version": "1.0.0",
   "description": "Static version of business.drinkedin.net",
-  "main": "src/index.html",
+  "type": "module",
+  "main": "index.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "start": "vite build",
     "format": "prettier --write src/**/*.{html,css,js}",
     "lint": "eslint src/**/*.js"
   },
