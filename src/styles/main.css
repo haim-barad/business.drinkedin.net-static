@@ -327,11 +327,12 @@ a:hover, a:focus {
 
 /* Footer */
 .main-footer {
-    background-color: var(--secondary-color);
-    color: var(--white);
+    background-color: var(--white);
+    color: var(--secondary-color);
     text-align: center;
     padding: 3rem 0;
     margin-top: 4rem;
+    border-top: 1px solid var(--border-color);
 }
 
 .footer-content {
