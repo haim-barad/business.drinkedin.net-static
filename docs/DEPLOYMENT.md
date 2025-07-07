@@ -6,9 +6,9 @@ This guide covers deploying the DrinkedIn business site to various static hostin
 
 **Essential Settings:**
 - Framework preset: **None** (not VitePress)
-- Build command: `npm install && npm run build`
+- Build command: `npm ci && npm run build`
 - Build output directory: `dist`
-- Node.js version: 18+
+- Node.js version: 18 (specified in .nvmrc)
 
 ## Quick Start
 
@@ -26,10 +26,10 @@ This guide covers deploying the DrinkedIn business site to various static hostin
 1. Connect your GitHub repository to Cloudflare Pages
 2. Set build configuration:
    - **Framework preset**: None (leave blank) - Do NOT select "VitePress" as that's different
-   - **Build command**: `npm install && npm run build`
+   - **Build command**: `npm ci && npm run build`
    - **Build output directory**: `dist`
    - **Root directory**: (leave blank)
-   - **Node.js version**: 18 or later
+   - **Node.js version**: 18 (auto-detected from .nvmrc)
 3. Deploy automatically on git push
 
 **Important Notes for Cloudflare Pages:**
@@ -38,10 +38,19 @@ This guide covers deploying the DrinkedIn business site to various static hostin
 - Our project uses Vite as a build tool, so select "None" for framework preset
 
 **Troubleshooting Cloudflare Pages:**
-- If you get "Module not found" errors, ensure the build command includes `npm install &&`
-- Make sure the Node.js version is set to 18 or later in Cloudflare Pages settings
+
+**🚨 Error: "Cannot find module '/opt/buildhome/repo/build'"**
+This error means Cloudflare is running `npx run build` instead of `npm run build`. 
+- **Solution**: Double-check the build command is exactly: `npm ci && npm run build`
+- **Cause**: The `run` package tries to execute a `build` file that doesn't exist
+
+**Other Common Issues:**
+- **Critical**: Use `npm ci && npm run build` NOT `npx run build`
+- If you get "Module not found" errors with `/opt/buildhome/repo/build`, the build command is wrong
+- Make sure the Node.js version is set to 18 (we include .nvmrc file)
 - DO NOT select "VitePress" - that's for different projects
 - Verify the build output directory is exactly `dist` (not `./dist` or `/dist`)
+- If Cloudflare shows `npx run build` in logs, the build command was entered incorrectly
 
 ### Netlify
 
