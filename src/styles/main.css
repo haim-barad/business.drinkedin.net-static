@@ -868,8 +868,8 @@ a:hover, a:focus {
    FOOTER
    ============================================ */
 .main-footer {
-    background-color: var(--secondary-color);
-    color: var(--white);
+    background-color: var(--white);
+    color: var(--secondary-color);
     padding: 4rem 0 2rem;
 }
 
@@ -896,13 +896,13 @@ a:hover, a:focus {
 }
 
 .footer-brand p {
-    color: #9ca3af;
+    color: var(--text-light);
     font-size: 0.875rem;
     line-height: 1.6;
 }
 
 .footer-links h4 {
-    color: var(--white);
+    color: var(--secondary-color);
     font-size: 0.875rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -921,23 +921,23 @@ a:hover, a:focus {
 }
 
 .footer-links a {
-    color: #9ca3af;
+    color: var(--text-color);
     font-size: 0.9375rem;
     transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
-    color: var(--white);
+    color: var(--primary-color);
 }
 
 .footer-bottom {
     padding-top: 2rem;
-    border-top: 1px solid #4b5563;
+    border-top: 1px solid var(--border-color);
     text-align: center;
 }
 
 .footer-bottom p {
-    color: #6b7280;
+    color: var(--text-light);
     font-size: 0.875rem;
 }
 
