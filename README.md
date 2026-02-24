@@ -1,37 +1,63 @@
 # DrinkedIn Business - Static Site
 
-A static version of business.drinkedin.net - The Alcohol Marketing Platform.
+The business-facing static website for DrinkedIn - The AI-Powered Bar & Spirits Ecosystem.
 
 ## Overview
 
-DrinkedIn's alcohol marketing platform is dragging the alcohol industry kicking and screaming into the 21st century. This static version maintains the core design and messaging of the original WordPress site while providing improved performance and easier maintenance.
+This static site showcases DrinkedIn's three core business opportunities:
+- **Sponsored Bar Listings** - For bar owners to get discovered
+- **Sponsored Brand Listings** - For spirit brands to reach consumers
+- **AI Agent Interactions** - Intelligent AI brand ambassadors
 
 ## Features
 
-- **Modern Architecture**: Built with modern web standards
-- **Responsive Design**: Mobile-first approach with breakpoints at 544px, 921px, and 1240px
-- **Performance Optimized**: Static generation with Vite for fast loading
+- **Modern Architecture**: Built with Vite for fast, optimized builds
+- **Fully Responsive**: Mobile-first design with breakpoints at 480px, 768px, and 1024px
+- **Performance Optimized**: Static generation for fast loading
 - **SEO Ready**: Semantic HTML and proper meta tags
 - **Accessible**: ARIA labels and keyboard navigation support
-- **Hero Section**: Full-screen hero with background image and overlay
-- **Service Sections**: BrandFinder, Loyalty, BarDeals/Events, and Signature Cocktails
+- **Animated**: Smooth scroll, fade-in effects, and counter animations
 - **Contact Form**: Integrated with Formspree for serverless form handling
-- **Smooth Animations**: Fade-in effects and smooth scrolling
-- **Mobile Menu**: Responsive hamburger menu for mobile devices
+
+## Products
+
+### 1. Sponsored Bar Listings
+Target: Bar owners, restaurant groups, hospitality businesses
+- Premium placement in search results
+- Enhanced profiles with photos, hours, menus
+- Real-time analytics dashboard
+- Starting at $99/month
+
+### 2. Sponsored Brand Listings
+Target: Spirit brands, distributors, craft producers
+- Cocktail recipe integration
+- Bar attribution ("where to buy")
+- AI agent promotion
+- Authentic brand mentions
+
+### 3. AI Agent Interactions
+Target: Both bar owners and brand managers
+- 24/7 intelligent brand ambassadors
+- Natural conversational recommendations
+- Context-aware brand mentions
+- Promotes happy hours & specials
 
 ## Color Scheme
 
-- Primary: `#0170B9` (DrinkedIn Blue)
-- Secondary: `#3a3a3a` (Dark Gray)
-- Text: `#4B4F58` (Medium Gray)
-- Background: `#F5F5F5` (Light Gray)
-- White: `#FFFFFF`
+| Color | Hex | Usage |
+|-------|-----|-------|
+| Primary Blue | `#0170B9` | CTAs, links, accents |
+| Dark Gray | `#3a3a3a` | Headings, footer |
+| Text Gray | `#4B4F58` | Body text |
+| Background | `#F5F5F5` | Page background |
+| Accent Gold | `#D4A84B` | Sponsored badges |
+| Accent Green | `#10b981` | Checkmarks, success |
 
 ## Development
 
 ### Prerequisites
 
-- Node.js 16+ 
+- Node.js 16+
 - npm or yarn
 
 ### Setup
@@ -74,20 +100,51 @@ src/
 └── scripts/
     └── main.js         # Main JavaScript
 
-docs/                   # Documentation
+assets/                 # Images and media
 dist/                   # Production build output
 ```
 
 ## Deployment
 
-This site is optimized for deployment on:
-- Cloudflare Pages
+### Cloudflare Pages
+
+This site is deployed to Cloudflare Pages via wrangler:
+
+```bash
+# Build and deploy
+npm run build
+npx wrangler pages deploy dist
+```
+
+The site automatically deploys on push to the main branch.
+
+### Other Platforms
+
+The `dist/` folder can be deployed to:
 - Netlify
 - Vercel
 - GitHub Pages
 - Any static hosting provider
 
-Simply build the project and deploy the `dist/` folder.
+## Sections
+
+1. **Header** - Sticky navigation with mobile menu
+2. **Hero** - Main value proposition with dual CTAs
+3. **Stats Strip** - Key metrics (25K+ bars, 50+ AI agents, etc.)
+4. **Bar Listings** - Product section for bar owners
+5. **Brand Listings** - Product section for spirit brands
+6. **AI Agents** - Hero feature with chat preview
+7. **Loyalty** - Collapsible accordion for legacy customers
+8. **Testimonials** - Social proof section
+9. **Contact** - Form with interest selector
+10. **Footer** - Links and copyright
+
+## Form Integration
+
+Contact forms use [Formspree](https://formspree.io) for serverless handling:
+- Form ID: `mldnyrgw`
+- Submissions sent to configured email
+- Spam protection included
 
 ## License
 
