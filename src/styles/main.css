@@ -592,6 +592,21 @@ p:last-child { margin-bottom: 0; }
     transition: border-color .2s;
 }
 .field textarea { resize: vertical; }
+
+/* A native select ignores background-color on macOS/iOS unless appearance is
+   reset, which left one stark white control in the middle of a dark form.
+   Resetting it means supplying our own chevron. */
+.field select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%237C837F' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 38px;
+    cursor: pointer;
+}
+/* The dropdown list itself is OS-rendered; this is the most we can set. */
+.field select option { background: var(--ink-2); color: var(--bone); }
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
@@ -666,6 +681,20 @@ p:last-child { margin-bottom: 0; }
     transition: color .2s;
 }
 .foot-col a:hover { color: var(--brass-lit); }
+
+/* Mark links that leave the site, so a new tab is expected rather than a
+   surprise. Scoped to the footer and the contact note -- an arrow after every
+   inline link in body copy would be noise. */
+.foot-col a[target="_blank"]::after,
+.contact-note a[target="_blank"]::after {
+    content: "↗";
+    display: inline-block;
+    margin-left: .35em;
+    font-size: .8em;
+    opacity: .45;
+    vertical-align: baseline;
+}
+.foot-col a[target="_blank"]:hover::after { opacity: .8; }
 
 .foot-bottom {
     display: flex;
