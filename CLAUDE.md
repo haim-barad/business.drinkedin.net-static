@@ -30,6 +30,19 @@ Work is tracked in **Linear**, team *Software Engineering*, project *DrinkedIn M
 
 7. **Say what is not yet true.** The "Where this actually stands" section states that most agents in the venues are house agents we operate and that brand programmes are opening rather than established. Do not quietly delete it to make the page read stronger.
 
+## Email addresses that exist
+
+`drinkedin.net` mail is on Microsoft 365 and **there is no catch-all** — mail to an undefined address bounces. Only two aliases exist:
+
+| Address | Use |
+| -- | -- |
+| `sales@drinkedin.net` | Business, partner and brand enquiries. Also the Stripe account email, so it is demonstrably monitored. |
+| `support@drinkedin.net` | Support, and privacy / data-rights requests. |
+
+Both may route into the Freshdesk queue shared with loyalty.dog. That is fine — a real monitored destination beats a tidy-looking dead one.
+
+**Never publish an address without checking it against this list.** `partners@` and `privacy@` were published here on 2026-07-30 purely because they read well; neither existed, so every message to them would have bounced.
+
 ## Verifying numbers
 
 Live, public, unauthenticated:
