@@ -66,6 +66,10 @@ Bars and cocktail totals are not exposed by an endpoint yet; they come from the 
 | `src/scripts/main.js` | Mobile menu, scroll reveals, form state. Intentionally small. |
 | `index-source.html` | **Dead.** Vite's root is `src/`, so this is never served. |
 
+## Analytics and consent
+
+Google Analytics is loaded **only** through the shared DrinkedIn consent script, `<script src="https://drinkedin.net/consent-analytics.js"></script>`, in the `<head>` of every page (SWE-1240). It implements Google Consent Mode v2, draws the consent banner, and stores the choice in the `drinkedin_cookie_consent` cookie on `.drinkedin.net`, shared with drinkedin.net. **Never add a gtag snippet here.** The consent mode (basic vs advanced) is one switch in that file in `haim-barad/drinkedin`; see `docs/ops/analytics-consent.md` there. `src/privacy.html` describes basic mode, so it must change if the mode does. A new page needs the tag too.
+
 ## Design
 
 "Last call, for machines" — a dim bar rendered through a terminal. Warm brass and lamplight against mono type and precise rules; the tension between the two is the product.

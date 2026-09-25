@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- SWE-1240: the shared DrinkedIn consent + Google Analytics loader (Google
+         Consent Mode v2), served from drinkedin.net so both sites share one
+         script, one consent cookie (drinkedin_cookie_consent on .drinkedin.net)
+         and one consent-mode switch. No gtag.js and no GA cookies before consent
+         (basic mode). -->
+    <script src="https://drinkedin.net/consent-analytics.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy — DrinkedIn for Brands</title>
     <meta name="description" content="What business.drinkedin.net collects, why, and how to have it deleted.">
@@ -30,7 +36,7 @@
     <main class="doc">
         <div class="shell doc-inner">
             <h1>Privacy Policy</h1>
-            <p class="doc-date">Last updated 30 July 2026</p>
+            <p class="doc-date">Last updated 25 September 2026</p>
 
             <p>
                 This policy covers <strong>business.drinkedin.net</strong> only &mdash; the
@@ -50,10 +56,15 @@
                     choose what to put there.
                 </li>
                 <li>
-                    <strong>Anonymous usage analytics.</strong> We use Google Analytics 4
-                    to count visits and see which sections are read. This sets cookies and
-                    records approximate location, device, and referring page. We do not
-                    combine it with contact-form submissions.
+                    <strong>Anonymous usage analytics, only if you accept.</strong> A
+                    banner asks first. If you accept, we load Google Analytics 4 to count
+                    visits and see which sections are read. It sets cookies
+                    (<code>_ga</code>, <code>_ga_*</code>) and records approximate
+                    location, device, and referring page. If you decline, the Google
+                    Analytics script is never loaded and those cookies are never set.
+                    Advertising storage and ad personalisation are always off (Google
+                    Consent Mode v2). We do not combine analytics with contact-form
+                    submissions.
                 </li>
             </ul>
             <p>
@@ -90,9 +101,14 @@
                 You can ask what we hold about you, ask for it to be corrected, or ask for
                 it to be deleted &mdash; and we will do it. Depending on where you live you
                 may have these rights under the GDPR, the CCPA, or similar law; we apply
-                them to everyone regardless. To opt out of analytics, use your browser's
-                do-not-track or an ad blocker, both of which we respect by not working
-                around them.
+                them to everyone regardless. To opt out of analytics, decline in the
+                banner. Your choice is kept in one small cookie,
+                <code>drinkedin_cookie_consent</code>, set on <code>.drinkedin.net</code>
+                for six months and shared with drinkedin.net, so you are asked once for
+                both sites. To change your mind, use the reset button on the
+                <a href="https://drinkedin.net/cookies" target="_blank" rel="noopener noreferrer">DrinkedIn cookie settings</a>
+                page, or delete the cookie in your browser. Ad blockers work too; we do
+                not work around them.
             </p>
             <p>
                 Write to <a href="mailto:support@drinkedin.net">support@drinkedin.net</a>.
