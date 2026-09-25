@@ -11,9 +11,11 @@
     <!-- SWE-1240: the shared DrinkedIn consent + Google Analytics loader (Google
          Consent Mode v2), served from drinkedin.net so both sites share one
          script, one consent cookie (drinkedin_cookie_consent on .drinkedin.net)
-         and one consent-mode switch. No gtag.js and no GA cookies before consent
-         (basic mode). -->
-    <script src="https://drinkedin.net/consent-analytics.js"></script>
+         and one consent-mode switch. Advanced mode: gtag.js loads with every
+         signal denied (cookieless pings); GA cookies only after Accept. The ?v=
+         is a cache buster: keep it equal to SCRIPT_VERSION in
+         haim-barad/drinkedin backend/tests/test_consent_analytics.py. -->
+    <script src="https://drinkedin.net/consent-analytics.js?v=2"></script>
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://business.drinkedin.net/">
