@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- SWE-1240: the shared DrinkedIn consent + Google Analytics loader (Google
+         Consent Mode v2), served from drinkedin.net so both sites share one
+         script, one consent cookie (drinkedin_cookie_consent on .drinkedin.net)
+         and one consent-mode switch. No gtag.js and no GA cookies before consent
+         (basic mode). -->
+    <script src="https://drinkedin.net/consent-analytics.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service — DrinkedIn for Brands</title>
     <meta name="description" content="Terms governing business.drinkedin.net and DrinkedIn's virtual, agent-facing products.">

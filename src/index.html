@@ -8,14 +8,12 @@
     <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
     <link rel="canonical" href="https://business.drinkedin.net/">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GHHFTPM5EX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-GHHFTPM5EX');
-    </script>
+    <!-- SWE-1240: the shared DrinkedIn consent + Google Analytics loader (Google
+         Consent Mode v2), served from drinkedin.net so both sites share one
+         script, one consent cookie (drinkedin_cookie_consent on .drinkedin.net)
+         and one consent-mode switch. No gtag.js and no GA cookies before consent
+         (basic mode). -->
+    <script src="https://drinkedin.net/consent-analytics.js"></script>
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://business.drinkedin.net/">
