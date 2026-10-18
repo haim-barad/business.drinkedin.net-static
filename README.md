@@ -51,14 +51,22 @@ npm run lint
 
 ```
 src/
-├── index.html          # Main HTML file
+├── index.html
+├── privacy.html
+├── terms.html
+├── 404.html
 ├── styles/
-│   └── main.css        # Main stylesheet
-└── scripts/
-    └── main.js         # Main JavaScript
-
-assets/                 # Images and media
-dist/                   # Production build output
+│   └── main.css
+├── scripts/
+│   └── main.js
+└── assets/             # images
+public/
+├── robots.txt
+├── sitemap.xml
+├── llms.txt
+└── _headers
+vite.config.js
+dist/                   # build output
 ```
 
 ## Deployment
