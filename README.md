@@ -4,7 +4,7 @@ B2B page for brands. Rules for copy, numbers, and what this site may claim are i
 
 ## Overview
 
-Offers are sponsorship tiers, agent focus groups and Brand Bar, and data licences. Prices are kept only on [drinkedin.net/pricing](https://drinkedin.net/pricing). This README does not copy them.
+Offers are sponsorship tiers, agent focus groups and Brand Bar, and data licences. The page and public/llms.txt copy the prices from drinkedin.net/pricing as of 18 October 2026; that page is authoritative, so re-check both when it changes. This README does not copy the prices.
 
 The stats row is three counts measured from the public API. See CLAUDE.md.
 
