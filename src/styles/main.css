@@ -169,10 +169,10 @@ p:last-child { margin-bottom: 0; }
     text-transform: uppercase;
     color: var(--brass);
 }
-.nav { display: flex; align-items: center; gap: 30px; }
+.nav { display: flex; align-items: center; gap: 22px; }
 .nav-list {
     display: flex;
-    gap: 28px;
+    gap: 22px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -363,7 +363,7 @@ p:last-child { margin-bottom: 0; }
 }
 .ledger-row {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 28px;
     list-style: none;
     margin: 0 0 20px;
@@ -385,8 +385,14 @@ p:last-child { margin-bottom: 0; }
     font-family: var(--mono);
     font-size: 11.5px;
     color: var(--muted);
-    max-width: 62ch;
+    max-width: 92ch;
     line-height: 1.6;
+}
+.ledger-note a {
+    color: var(--phos);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(111,227,176,.35);
+    overflow-wrap: anywhere;
 }
 
 /* ── chapters ───────────────────────────────────────────────────────────── */
@@ -407,7 +413,7 @@ p:last-child { margin-bottom: 0; }
     padding-top: .7em;
     margin: 0;
 }
-.chapter-body { max-width: 74ch; }
+.chapter-body { max-width: 74ch; min-width: 0; }
 /* Prose wants a narrow measure; card and step grids want the full column.
    This lets a chapter opt out of the measure cap without unbottling the text,
    which keeps its own max-width below. */
@@ -450,6 +456,130 @@ p:last-child { margin-bottom: 0; }
     color: var(--brass-lit);
 }
 .card p { font-size: 15px; margin: 0; }
+
+/* priced offers */
+.offer-groups { display: grid; gap: 22px; margin-top: 8px; }
+.offer-group {
+    background: var(--ink-3);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: clamp(20px, 3vw, 32px);
+}
+.offer-group h3 {
+    font-size: clamp(26px, 3vw, 34px);
+    color: var(--brass-lit);
+    margin-bottom: 14px;
+}
+.offer-group h4 {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin: 28px 0 8px;
+}
+.offer-group p { font-size: 15px; max-width: 78ch; }
+.offer-group a,
+.price-asof a {
+    color: var(--brass-lit);
+}
+.offer-group .offer-rule {
+    margin: 16px 0 4px;
+    padding: 2px 0 2px 16px;
+    border-left: 2px solid var(--brass);
+    color: var(--bone);
+    max-width: 72ch;
+}
+.offer-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 4px;
+    font-size: 14.5px;
+}
+.offer-table th,
+.offer-table td {
+    text-align: left;
+    vertical-align: top;
+    padding: 12px 14px 12px 0;
+    border-bottom: 1px solid var(--rule);
+    font-weight: 400;
+}
+.offer-table thead th {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    padding-top: 0;
+}
+.offer-table tbody th {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--brass-lit);
+    line-height: 1.2;
+    width: 22%;
+}
+.offer-table td.price {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--bone);
+    white-space: nowrap;
+    width: 8.5rem;
+}
+.offer-table td { color: var(--bone-dim); line-height: 1.5; }
+.chapter .price-asof {
+    margin-top: 28px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--muted);
+    max-width: 72ch;
+    line-height: 1.6;
+}
+
+/* developer directory */
+.dev-links {
+    list-style: none;
+    margin: 26px 0 0;
+    padding: 0;
+}
+.dev-links li {
+    display: grid;
+    grid-template-columns: minmax(9.5rem, 13rem) minmax(0, 1fr);
+    gap: 8px 18px;
+    align-items: baseline;
+    padding: 11px 0;
+    border-top: 1px solid var(--rule);
+}
+.dev-links li:last-child { border-bottom: 1px solid var(--rule); }
+.dev-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.dev-links a,
+.dev-links code {
+    font-family: var(--mono);
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+.dev-links a {
+    color: var(--phos);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(111,227,176,.3);
+}
+.dev-links code { color: var(--phos); }
+.dev-hint {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-left: .6em;
+}
 
 /* steps */
 .steps {
@@ -683,10 +813,12 @@ p:last-child { margin-bottom: 0; }
 .foot-col a:hover { color: var(--brass-lit); }
 
 /* Mark links that leave the site, so a new tab is expected rather than a
-   surprise. Scoped to the footer and the contact note -- an arrow after every
+   surprise. Scoped to link lists and source notes -- an arrow after every
    inline link in body copy would be noise. */
 .foot-col a[target="_blank"]::after,
-.contact-note a[target="_blank"]::after {
+.contact-note a[target="_blank"]::after,
+.ledger-note a[target="_blank"]::after,
+.dev-links a[target="_blank"]::after {
     content: "↗";
     display: inline-block;
     margin-left: .35em;
@@ -757,15 +889,7 @@ p:last-child { margin-bottom: 0; }
 
 /* ── responsive ─────────────────────────────────────────────────────────── */
 
-@media (max-width: 980px) {
-    .hero-grid,
-    .contact-grid { grid-template-columns: 1fr; }
-    .foot-grid { grid-template-columns: 1fr 1fr; }
-    .ledger-row { grid-template-columns: 1fr 1fr; gap: 24px; }
-}
-
-@media (max-width: 720px) {
-    body { font-size: 16px; }
+@media (max-width: 1100px) {
     .nav-list {
         position: absolute;
         top: 68px;
@@ -782,6 +906,17 @@ p:last-child { margin-bottom: 0; }
     .nav-list li { padding: 0 var(--gutter); }
     .nav-list a { display: block; padding: 13px 0; }
     .burger { display: flex; }
+}
+
+@media (max-width: 980px) {
+    .hero-grid,
+    .contact-grid { grid-template-columns: 1fr; }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+    .ledger-row { gap: 24px; }
+}
+
+@media (max-width: 720px) {
+    body { font-size: 16px; }
     .nav .btn-sm { display: none; }
 
     .chapter-grid { grid-template-columns: 1fr; }
@@ -789,8 +924,32 @@ p:last-child { margin-bottom: 0; }
     .field-row { grid-template-columns: 1fr; }
     .form { padding: 22px 20px; }
     .foot-grid { grid-template-columns: 1fr; gap: 30px; }
+    .ledger-row { grid-template-columns: 1fr; gap: 22px; }
+    .dev-links li { grid-template-columns: 1fr; gap: 2px; }
+}
+
+@media (max-width: 800px) {
+    .offer-table thead { display: none; }
+    .offer-table,
+    .offer-table tbody,
+    .offer-table tr,
+    .offer-table th,
+    .offer-table td { display: block; width: auto; }
+    .offer-table tr {
+        padding: 14px 0;
+        border-bottom: 1px solid var(--rule);
+    }
+    .offer-table tbody th,
+    .offer-table td,
+    .offer-table td.price {
+        border: 0;
+        padding: 2px 0;
+        width: auto;
+        white-space: normal;
+    }
+    .offer-table tbody th { margin-bottom: 2px; }
 }
 
 @media (max-width: 460px) {
-    .ledger-row { grid-template-columns: 1fr; }
+    .offer-group { padding: 18px 14px; }
 }

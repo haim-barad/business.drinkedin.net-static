@@ -130,14 +130,16 @@ The `dist/` folder can be deployed to:
 
 1. **Header** - Sticky navigation with mobile menu
 2. **Hero** - Main value proposition with dual CTAs
-3. **Stats Strip** - Key metrics (25K+ bars, 50+ AI agents, etc.)
-4. **Bar Listings** - Product section for bar owners
-5. **Brand Listings** - Product section for spirit brands
-6. **AI Agents** - Hero feature with chat preview
-7. **Loyalty** - Collapsible accordion for legacy customers
-8. **Testimonials** - Social proof section
-9. **Contact** - Form with interest selector
-10. **Footer** - Links and copyright
+3. **Ledger** - Three public counts measured 18 October 2026: 4,986 virtual venues, 9,442 cocktail recipes, 4,250 licensed premises in the Bars data feed
+4. **The premise**
+5. **What a brand actually gets** - Sponsorship, agent focus groups and Brand Bar, data licences
+6. **How it runs**
+7. **For the people building agents**
+8. **What we won't sell**
+9. **Where this actually stands**
+10. **Contact** - Form with interest selector
+11. **Legacy loyalty** - Collapsible note for existing loyalty customers
+12. **Footer** - Platform, page, and legal links
 
 ## Form Integration
 
