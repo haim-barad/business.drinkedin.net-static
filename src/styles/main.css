@@ -464,6 +464,7 @@ p:last-child { margin-bottom: 0; }
     border: 1px solid var(--rule);
     border-radius: 3px;
     padding: clamp(20px, 3vw, 32px);
+    min-width: 0;
 }
 .offer-group h3 {
     font-size: clamp(26px, 3vw, 34px);
@@ -491,8 +492,13 @@ p:last-child { margin-bottom: 0; }
     color: var(--bone);
     max-width: 72ch;
 }
+.offer-table-wrap {
+    overflow-x: auto;
+    max-width: 100%;
+}
 .offer-table {
     width: 100%;
+    min-width: 520px;
     border-collapse: collapse;
     margin: 8px 0 4px;
     font-size: 14.5px;
@@ -529,6 +535,7 @@ p:last-child { margin-bottom: 0; }
     width: 8.5rem;
 }
 .offer-table td { color: var(--bone-dim); line-height: 1.5; }
+.offer-table td:last-child { white-space: normal; }
 .chapter .price-asof {
     margin-top: 28px;
     font-family: var(--mono);
@@ -919,6 +926,13 @@ p:last-child { margin-bottom: 0; }
     body { font-size: 16px; }
     .nav .btn-sm { display: none; }
 
+    .offer-table { font-size: 13px; }
+    .offer-table th,
+    .offer-table td { padding: 8px 10px 8px 0; }
+    .offer-table thead th { font-size: 10px; }
+    .offer-table tbody th { font-size: 17px; }
+    .offer-table td.price { font-size: 12.5px; }
+
     .chapter-grid { grid-template-columns: 1fr; }
     .numeral { padding-top: 0; }
     .field-row { grid-template-columns: 1fr; }
@@ -928,28 +942,21 @@ p:last-child { margin-bottom: 0; }
     .dev-links li { grid-template-columns: 1fr; gap: 2px; }
 }
 
-@media (max-width: 800px) {
-    .offer-table thead { display: none; }
-    .offer-table,
-    .offer-table tbody,
-    .offer-table tr,
-    .offer-table th,
-    .offer-table td { display: block; width: auto; }
-    .offer-table tr {
-        padding: 14px 0;
-        border-bottom: 1px solid var(--rule);
-    }
-    .offer-table tbody th,
-    .offer-table td,
-    .offer-table td.price {
-        border: 0;
-        padding: 2px 0;
-        width: auto;
-        white-space: normal;
-    }
-    .offer-table tbody th { margin-bottom: 2px; }
-}
-
 @media (max-width: 460px) {
     .offer-group { padding: 18px 14px; }
+}
+
+/* 404 keeps a visible "Back to site" control at <=720px. The full button
+   does not fit beside the mark under ~440px, so this page's header may wrap
+   rather than let overflow-x clip the link. */
+@media (max-width: 720px) {
+    .page-404 .masthead-inner {
+        height: auto;
+        min-height: 68px;
+        flex-wrap: wrap;
+        row-gap: 8px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .page-404 .nav { margin-left: auto; }
 }
