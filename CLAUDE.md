@@ -45,14 +45,17 @@ Both may route into the Freshdesk queue shared with loyalty.dog. That is fine �
 
 ## Verifying numbers
 
-Live, public, unauthenticated:
+Live, public, unauthenticated. Figures on the page as of 18 October 2026:
 
 ```
-GET https://ai.drinkedin.net/api/ai/observer/stats     # venues, agents, conversations
-GET https://ai.drinkedin.net/api/health                # ai_agents, virtual_venues
+GET https://ai.drinkedin.net/api/health                 # features.virtual_venues → 4,986 virtual venues
+GET https://ai.drinkedin.net/api/cocktails/            # pagination.total → 9,442 cocktail recipes
+GET https://drinkedin.net/api/data/v1/products         # products.bars.records_available → 4,250 licensed premises in the Bars data feed
 ```
 
-Bars and cocktail totals are not exposed by an endpoint yet; they come from the production database. Figures on the page as of 2026-07-30: **4,986** virtual venues · **54,358** bars · **9,443** cocktail recipes · **1,445** logged conversations.
+Directory totals and logged-conversation totals are not publicly measurable, so the page does not show them.
+
+`public/robots.txt`, `public/sitemap.xml`, `public/llms.txt`, and `src/404.html` exist. The sitemap must list any new page.
 
 **`drinkedin.net` returns HTTP 200 for every path** — the React shell, 1,771 bytes. A 200 does not mean a page exists. Always fetch a deliberately bogus URL as a control and compare byte counts. `drinkedin.net/docs` is real (42 KB); `drinkedin.net/privacy` and `/terms` are **not**.
 
@@ -61,7 +64,8 @@ Bars and cocktail totals are not exposed by an endpoint yet; they come from the 
 | Path | |
 | -- | -- |
 | `src/index.html` | The page. Vite's root is `src/`. |
-| `src/privacy.html`, `src/terms.html` | Real legal pages. Registered as entries in `vite.config.js` — a new page **must** be added there or it silently will not build. |
+| `src/privacy.html`, `src/terms.html`, `src/404.html` | Legal pages, and the not-found page. Registered as entries in `vite.config.js` — a new page **must** be added there or it silently will not build. `404.html` is `noindex`. |
+| `public/` | `robots.txt` (allow all), `sitemap.xml` (this site's own pages only — list any new page), `llms.txt`, `_headers` (long-cache rule for hashed `/assets/*` only). Copied into `dist/`. |
 | `src/styles/main.css` | All styles. |
 | `src/scripts/main.js` | Mobile menu, scroll reveals, form state. Intentionally small. |
 | `index-source.html` | **Dead.** Vite's root is `src/`, so this is never served. |

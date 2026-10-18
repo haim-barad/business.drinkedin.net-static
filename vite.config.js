@@ -15,7 +15,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'src/index.html'),
         privacy: resolve(__dirname, 'src/privacy.html'),
-        terms: resolve(__dirname, 'src/terms.html')
+        terms: resolve(__dirname, 'src/terms.html'),
+        notfound: resolve(__dirname, 'src/404.html')
       },
       output: {
         chunkFileNames: 'assets/[name]-[hash].js',

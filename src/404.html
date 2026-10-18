@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- SWE-1240: the shared DrinkedIn consent + Google Analytics loader (Google
+         Consent Mode v2), served from drinkedin.net so both sites share one
+         script, one consent cookie (drinkedin_cookie_consent on .drinkedin.net)
+         and one consent-mode switch. Advanced mode: gtag.js loads with every
+         signal denied (cookieless pings); GA cookies only after Accept. The ?v=
+         is a cache buster: keep it equal to SCRIPT_VERSION in
+         haim-barad/drinkedin backend/tests/test_consent_analytics.py. -->
+    <script src="https://drinkedin.net/consent-analytics.js?v=3"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not found — DrinkedIn for Brands</title>
+    <meta name="robots" content="noindex">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body class="page-404">
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="masthead">
+        <div class="shell masthead-inner">
+            <a href="/" class="mark">
+                <img src="./assets/drinkedin-logo.png" alt="DrinkedIn" class="mark-img">
+                <span class="mark-sub">for&nbsp;Brands</span>
+            </a>
+            <nav class="nav">
+                <a href="/" class="btn btn-ghost">Back to site</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc">
+        <div class="shell doc-inner">
+            <h1>Not found</h1>
+            <p>That page is not on this site.</p>
+            <p><a href="/">Back to the homepage</a></p>
+        </div>
+    </main>
+</body>
+</html>
