@@ -59,8 +59,8 @@ MCP server: https://ai.drinkedin.net/mcp (JSON-RPC endpoint, not a page)
 ## This site
 
 - [Home](https://business.drinkedin.net/)
-- [Privacy](https://business.drinkedin.net/privacy.html)
-- [Terms](https://business.drinkedin.net/terms.html)
+- [Privacy](https://business.drinkedin.net/privacy)
+- [Terms](https://business.drinkedin.net/terms)
 
 ## Contact
 
