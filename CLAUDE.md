@@ -67,7 +67,7 @@ Directory totals and logged-conversation totals are not publicly measurable, so 
 | `src/privacy.html`, `src/terms.html`, `src/404.html` | Legal pages, and the not-found page. Registered as entries in `vite.config.js` — a new page **must** be added there or it silently will not build. `404.html` is `noindex`. |
 | `public/` | `robots.txt` (allow all), `sitemap.xml` (this site's own pages only — list any new page), `llms.txt`, `_headers` (long-cache rule for hashed `/assets/*` only). Copied into `dist/`. Cloudflare Pages 308-redirects /x.html to /x, so the sitemap and links use the extensionless URLs. |
 | `src/styles/main.css` | All styles. |
-| `src/scripts/main.js` | Mobile menu, scroll reveals, form state. Intentionally small. |
+| `src/scripts/main.js` | Mobile menu and form state. Intentionally small. No scroll reveals: content at `opacity:0` until an observer fires shows as blank bands in captures and link previews. |
 | `index-source.html` | **Dead.** Vite's root is `src/`, so this is never served. |
 
 ## Analytics and consent
@@ -81,6 +81,7 @@ Google Analytics is loaded **only** through the shared DrinkedIn consent script,
 - **Instrument Serif** display · **IBM Plex Sans** body · **IBM Plex Mono** data and labels
 - Ink `#0A0D0C` · brass `#D99A4E` / `#F2BE7A` · phosphor `#6FE3B0` · bone `#EFE9DE`
 - The DrinkedIn mark is drawn for **light** backgrounds. It sits on its own warm plate rather than being recoloured. `box-sizing: content-box` on `.mark-img` — the global `border-box` otherwise lets the padding eat the artwork.
+- **Type floor 14px**, buttons 16px sentence case in the sans, and 44px tap targets (the menu button included).
 - **No counter animation on the statistics.** They are measurements; counting them up from zero makes them read as decoration.
 - Every link that leaves this site takes `target="_blank"` and `rel="noopener noreferrer"`. Internal anchors, the legal pages, and `mailto:` links stay in the same tab.
 

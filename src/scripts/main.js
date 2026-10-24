@@ -1,9 +1,12 @@
 // DrinkedIn for Brands — page behaviour.
 //
 // Deliberately small. The hero animates via CSS (staggered animation-delay);
-// JS only handles the mobile menu, scroll-in reveals, and form state. There is
-// no stats counter: the numbers on this page are database facts, and animating
-// them up from zero makes measurements feel like decoration.
+// JS only handles the mobile menu and form state. There is no scroll-in
+// reveal: content hidden until an IntersectionObserver fired left the figures
+// band and the cards blank in full-page captures, link previews and fast
+// scrolling. There is no stats counter: the numbers on this page are database
+// facts, and animating them up from zero makes measurements feel like
+// decoration.
 
 document.addEventListener('DOMContentLoaded', () => {
     /* ── mobile menu ──────────────────────────────────────────────────── */
@@ -27,27 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 burger.setAttribute('aria-expanded', 'false');
                 burger.querySelectorAll('span').forEach((s) => { s.style.transform = ''; });
             });
-        });
-    }
-
-    /* ── scroll reveals ───────────────────────────────────────────────── */
-    // Anything below the fold fades up once. Guarded on IntersectionObserver
-    // so that without it the content is simply visible rather than invisible.
-    const targets = document.querySelectorAll('.card, .limit-list li, .steps li, .ledger-row li');
-
-    if ('IntersectionObserver' in window && targets.length) {
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('seen');
-                io.unobserve(entry.target);
-            });
-        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-
-        targets.forEach((el, i) => {
-            el.classList.add('watch');
-            el.style.transitionDelay = `${Math.min(i, 6) * 70}ms`;
-            io.observe(el);
         });
     }
 

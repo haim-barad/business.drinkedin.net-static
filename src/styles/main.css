@@ -88,12 +88,13 @@ p:last-child { margin-bottom: 0; }
     align-items: center;
     justify-content: center;
     gap: .5em;
-    font-family: var(--mono);
-    font-size: 13px;
-    letter-spacing: .06em;
-    text-transform: uppercase;
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2;
     text-decoration: none;
     padding: 14px 26px;
+    min-height: 48px;
     border: 1px solid transparent;
     border-radius: 2px;
     cursor: pointer;
@@ -110,7 +111,7 @@ p:last-child { margin-bottom: 0; }
     color: var(--bone);
 }
 .btn-ghost:hover { border-color: var(--brass); color: var(--brass-lit); }
-.btn-sm { padding: 10px 18px; font-size: 12px; }
+.btn-sm { padding: 10px 18px; min-height: 44px; }
 .btn-full { width: 100%; }
 
 /* ── masthead ───────────────────────────────────────────────────────────── */
@@ -164,12 +165,12 @@ p:last-child { margin-bottom: 0; }
 }
 .mark-sub {
     font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .14em;
+    font-size: 14px;
+    letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--brass);
 }
-.nav { display: flex; align-items: center; gap: 22px; }
+.nav { display: flex; align-items: center; gap: 22px; flex-shrink: 0; }
 .nav-list {
     display: flex;
     gap: 22px;
@@ -188,10 +189,15 @@ p:last-child { margin-bottom: 0; }
 .burger {
     display: none;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 5px;
+    width: 44px;
+    height: 44px;
+    margin-right: -11px;   /* keep the bars on the gutter line, not the hit area */
     background: none;
     border: 0;
-    padding: 8px;
+    padding: 0;
     cursor: pointer;
 }
 .burger span {
@@ -232,8 +238,8 @@ p:last-child { margin-bottom: 0; }
 }
 .eyebrow {
     font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: .2em;
+    font-size: 14px;
+    letter-spacing: .14em;
     text-transform: uppercase;
     color: var(--phos);
     margin-bottom: 22px;
@@ -251,7 +257,7 @@ p:last-child { margin-bottom: 0; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 26px; }
 .hero-foot {
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: .05em;
     color: var(--muted);
 }
@@ -272,8 +278,8 @@ p:last-child { margin-bottom: 0; }
     gap: 8px;
     padding: 11px 18px;
     font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .08em;
+    font-size: 14px;
+    letter-spacing: .04em;
     text-transform: uppercase;
     color: var(--muted);
     background: rgba(0, 0, 0, .35);
@@ -296,8 +302,8 @@ p:last-child { margin-bottom: 0; }
 }
 .panel-meta {
     font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .06em;
+    font-size: 14px;
+    letter-spacing: .02em;
     color: var(--muted);
 }
 .panel-body { padding: 0 22px 6px; }
@@ -322,13 +328,13 @@ p:last-child { margin-bottom: 0; }
 }
 .sponsor-note { font-size: 14px; color: var(--bone-dim); }
 
-.line { display: flex; gap: 12px; margin-bottom: 14px; font-size: 14.5px; }
+.line { display: flex; gap: 12px; margin-bottom: 14px; font-size: 15px; }
 .who {
     flex: 0 0 auto;
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 14px;
     color: var(--phos);
-    padding-top: 3px;
+    padding-top: 1px;
     min-width: 62px;
 }
 .says { color: var(--bone-dim); }
@@ -342,10 +348,10 @@ p:last-child { margin-bottom: 0; }
 }
 .tag {
     font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: .12em;
+    font-size: 14px;
+    letter-spacing: .04em;
     text-transform: uppercase;
-    padding: 4px 9px;
+    padding: 3px 9px;
     border-radius: 2px;
     border: 1px solid var(--rule);
     color: var(--muted);
@@ -378,12 +384,12 @@ p:last-child { margin-bottom: 0; }
     letter-spacing: -0.02em;
 }
 .ledger-row span {
-    font-size: 13px;
+    font-size: 15px;
     color: var(--muted);
 }
 .ledger-note {
     font-family: var(--mono);
-    font-size: 11.5px;
+    font-size: 14px;
     color: var(--muted);
     max-width: 92ch;
     line-height: 1.6;
@@ -407,7 +413,7 @@ p:last-child { margin-bottom: 0; }
 }
 .numeral {
     font-family: var(--mono);
-    font-size: 13px;
+    font-size: 14px;
     letter-spacing: .18em;
     color: var(--rule);
     padding-top: .7em;
@@ -473,9 +479,9 @@ p:last-child { margin-bottom: 0; }
 }
 .offer-group h4 {
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
-    letter-spacing: .14em;
+    letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--brass);
     margin: 28px 0 8px;
@@ -501,7 +507,7 @@ p:last-child { margin-bottom: 0; }
     min-width: 520px;
     border-collapse: collapse;
     margin: 8px 0 4px;
-    font-size: 14.5px;
+    font-size: 15px;
 }
 .offer-table th,
 .offer-table td {
@@ -513,8 +519,8 @@ p:last-child { margin-bottom: 0; }
 }
 .offer-table thead th {
     font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .12em;
+    font-size: 14px;
+    letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--muted);
     font-weight: 500;
@@ -539,7 +545,7 @@ p:last-child { margin-bottom: 0; }
 .chapter .price-asof {
     margin-top: 28px;
     font-family: var(--mono);
-    font-size: 12.5px;
+    font-size: 14px;
     color: var(--muted);
     max-width: 72ch;
     line-height: 1.6;
@@ -562,15 +568,15 @@ p:last-child { margin-bottom: 0; }
 .dev-links li:last-child { border-bottom: 1px solid var(--rule); }
 .dev-label {
     font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .12em;
+    font-size: 14px;
+    letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--muted);
 }
 .dev-links a,
 .dev-links code {
     font-family: var(--mono);
-    font-size: 13px;
+    font-size: 14px;
     overflow-wrap: anywhere;
 }
 .dev-links a {
@@ -581,8 +587,8 @@ p:last-child { margin-bottom: 0; }
 .dev-links code { color: var(--phos); }
 .dev-hint {
     font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .06em;
+    font-size: 14px;
+    letter-spacing: .04em;
     text-transform: uppercase;
     color: var(--muted);
     margin-left: .6em;
@@ -610,7 +616,7 @@ p:last-child { margin-bottom: 0; }
     left: 0;
     top: 26px;
     font-family: var(--mono);
-    font-size: 13px;
+    font-size: 14px;
     color: var(--brass);
 }
 .steps h3 { font-size: 22px; margin-bottom: 6px; }
@@ -694,7 +700,7 @@ p:last-child { margin-bottom: 0; }
     color: var(--muted);
 }
 .contact-note a { color: var(--phos); text-decoration: none; border-bottom: 1px solid rgba(111,227,176,.3); }
-.contact-note code { font-family: var(--mono); font-size: 13px; color: var(--phos); }
+.contact-note code { font-family: var(--mono); font-size: 14px; color: var(--phos); }
 
 /* form */
 .form {
@@ -708,8 +714,8 @@ p:last-child { margin-bottom: 0; }
 .field label {
     display: block;
     font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .1em;
+    font-size: 14px;
+    letter-spacing: .06em;
     text-transform: uppercase;
     color: var(--muted);
     margin-bottom: 7px;
@@ -721,7 +727,7 @@ p:last-child { margin-bottom: 0; }
     width: 100%;
     padding: 12px 13px;
     font-family: var(--sans);
-    font-size: 15px;
+    font-size: 16px;
     color: var(--bone);
     background: var(--ink);
     border: 1px solid var(--rule);
@@ -761,7 +767,7 @@ p:last-child { margin-bottom: 0; }
 }
 .legacy summary {
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--muted);
@@ -796,13 +802,13 @@ p:last-child { margin-bottom: 0; }
 .foot-brand p { font-size: 15px; color: var(--bone-dim); }
 .foot-fine {
     font-family: var(--mono);
-    font-size: 11.5px;
+    font-size: 14px;
     color: var(--muted);
     margin-top: 10px;
 }
 .foot-col h4 {
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 14px;
     letter-spacing: .14em;
     text-transform: uppercase;
     color: var(--muted);
@@ -846,7 +852,7 @@ p:last-child { margin-bottom: 0; }
 }
 .foot-bottom p {
     font-family: var(--mono);
-    font-size: 11.5px;
+    font-size: 14px;
     color: var(--muted);
     margin: 0;
 }
@@ -858,7 +864,7 @@ p:last-child { margin-bottom: 0; }
 .doc h1 { font-size: clamp(34px, 5vw, 52px); margin-bottom: 10px; }
 .doc-date {
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--muted);
@@ -886,11 +892,8 @@ p:last-child { margin-bottom: 0; }
 }
 @keyframes rise { to { opacity: 1; transform: none; } }
 
-.watch { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
-.watch.seen { opacity: 1; transform: none; }
-
 @media (prefers-reduced-motion: reduce) {
-    .reveal, .watch { animation: none; opacity: 1; transform: none; transition: none; }
+    .reveal { animation: none; opacity: 1; transform: none; transition: none; }
     .dot { animation: none; }
 }
 
@@ -926,12 +929,9 @@ p:last-child { margin-bottom: 0; }
     body { font-size: 16px; }
     .nav .btn-sm { display: none; }
 
-    .offer-table { font-size: 13px; }
     .offer-table th,
-    .offer-table td { padding: 8px 10px 8px 0; }
-    .offer-table thead th { font-size: 10px; }
-    .offer-table tbody th { font-size: 17px; }
-    .offer-table td.price { font-size: 12.5px; }
+    .offer-table td { padding: 10px 12px 10px 0; }
+    .offer-table tbody th { font-size: 18px; }
 
     .chapter-grid { grid-template-columns: 1fr; }
     .numeral { padding-top: 0; }
@@ -979,6 +979,14 @@ p:last-child { margin-bottom: 0; }
 
 @media (max-width: 460px) {
     .offer-group { padding: 18px 14px; }
+}
+
+/* At 320px the mark, "for Brands" at the 14px floor and a 44px menu button
+   only just fit in the masthead; tighten the mark rather than shrink the type. */
+@media (max-width: 380px) {
+    .mark { gap: 10px; }
+    .mark-img { padding: 9px 8px; }
+    .mark-sub { letter-spacing: .02em; }
 }
 
 /* 404 keeps a visible "Back to site" control at <=720px. The full button
