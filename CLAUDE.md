@@ -65,7 +65,7 @@ Directory totals and logged-conversation totals are not publicly measurable, so 
 | -- | -- |
 | `src/index.html` | The page. Vite's root is `src/`. |
 | `src/privacy.html`, `src/terms.html`, `src/404.html` | Legal pages, and the not-found page. Registered as entries in `vite.config.js` — a new page **must** be added there or it silently will not build. `404.html` is `noindex`. |
-| `public/` | `robots.txt` (allow all), `sitemap.xml` (this site's own pages only — list any new page), `llms.txt`, `_headers` (long-cache rule for hashed `/assets/*` only). Copied into `dist/`. Cloudflare Pages 308-redirects /x.html to /x, so the sitemap and links use the extensionless URLs. |
+| `public/` | `robots.txt` (allow all), `sitemap.xml` (this site's own pages only — list any new page), `llms.txt`, `_headers` (long-cache rule for hashed `/assets/*` only), `favicon.ico` (a copy of drinkedin.net's), `og-image.png` (the 1200x630 share card named in `index.html`'s og:image and twitter:image; unhashed so the URL stays stable). Every page links the favicon and preconnects to `drinkedin.net` for the consent script; the legal pages carry their own canonical. Copied into `dist/`. Cloudflare Pages 308-redirects /x.html to /x, so the sitemap and links use the extensionless URLs. |
 | `src/styles/main.css` | All styles. |
 | `src/scripts/main.js` | Mobile menu and form state. Intentionally small. No scroll reveals: content at `opacity:0` until an observer fires shows as blank bands in captures and link previews. |
 | `index-source.html` | **Dead.** Vite's root is `src/`, so this is never served. |

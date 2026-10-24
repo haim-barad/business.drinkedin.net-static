@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Warm the connection to drinkedin.net: the consent script below is a
+         synchronous cross-origin request that blocks rendering. -->
+    <link rel="preconnect" href="https://drinkedin.net">
     <!-- SWE-1240: the shared DrinkedIn consent + Google Analytics loader (Google
          Consent Mode v2), served from drinkedin.net so both sites share one
          script, one consent cookie (drinkedin_cookie_consent on .drinkedin.net)
@@ -14,11 +17,13 @@
     <title>Terms of Service — DrinkedIn for Brands</title>
     <meta name="description" content="Terms governing business.drinkedin.net and DrinkedIn's virtual, agent-facing products.">
     <meta name="robots" content="follow, index">
+    <link rel="canonical" href="https://business.drinkedin.net/terms">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/main.css">
+    <link rel="icon" href="/favicon.ico" sizes="any">
 </head>
 <body>
     <div class="grain" aria-hidden="true"></div>
