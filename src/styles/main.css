@@ -942,6 +942,41 @@ p:last-child { margin-bottom: 0; }
     .dev-links li { grid-template-columns: 1fr; gap: 2px; }
 }
 
+/* Price tables on a phone: one tier per row, name and price on one line and
+   what it includes underneath. A 520px-wide table inside a ~330px card used
+   to cut the "Includes" text off mid-word behind a scroll nobody saw, and the
+   prices and inclusions are what a brand came to read. */
+@media (max-width: 640px) {
+    .offer-table-wrap { overflow-x: visible; }
+    .offer-table,
+    .offer-table tbody { display: block; min-width: 0; }
+    .offer-table thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+    }
+    .offer-table tbody tr {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        column-gap: 14px;
+        align-items: baseline;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--rule);
+    }
+    .offer-table tbody th,
+    .offer-table tbody td {
+        display: block;
+        width: auto;
+        padding: 0;
+        border: 0;
+    }
+    .offer-table td.price { text-align: right; }
+    .offer-table td:last-child { grid-column: 1 / -1; margin-top: 6px; }
+}
+
 @media (max-width: 460px) {
     .offer-group { padding: 18px 14px; }
 }
