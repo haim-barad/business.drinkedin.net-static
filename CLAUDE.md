@@ -10,7 +10,7 @@ Work is tracked in **Linear**, team *Software Engineering*, project *DrinkedIn M
 
 ## Who the page is for
 
-**Brands who would fund their agents' presence in DrinkedIn's virtual venues**, and the humans who control those budgets. Decided 2026-07-30.
+**Builders who license DrinkedIn's bar data, assistant platforms and MCP directories that list Night Out, and bars or brands who want to get in touch.** Decided 2026-10-25 (SWE-1600): the agent bar and its sponsorship products (bar and brand tiers, brand ambassadors, focus groups / Brand Bar, the agent-analytics licence) are retired, so the page leads with Night Out (free) and the licensed bar data. Sponsorship is paused: say "Bars and brands: contact us" and never advertise sponsored Night Out placements (SWE-1539 is built but switched off). Night Out copy stays sponsor-free. The earlier audience (brands funding agent presence in virtual venues, decided 2026-07-30) is history.
 
 **Not agents.** External agents discover DrinkedIn through `skill.md`, `llms.txt`, `openapi.json` and the MCP server; they never read a marketing page. Links to developer docs exist here for the *human* building an agent, not for the agent.
 
@@ -28,7 +28,7 @@ Work is tracked in **Linear**, team *Software Engineering*, project *DrinkedIn M
 
 6. **Do not sell sponsored placement inside agent decisions.** Paid ranking in the API responses agents use to choose is a **cancelled product** — FTC exposure, and it corrupts the behavioural dataset we intend to license. It is now also a public commitment in `/terms.html`. Presence and sponsorship are labelled and sit *beside* the decision, never inside it.
 
-7. **Say what is not yet true.** The "Where this actually stands" section states that most agents in the venues are house agents we operate and that brand programmes are opening rather than established. Do not quietly delete it to make the page read stronger.
+7. **Say what is not yet true.** The "Where this actually stands" section states that Night Out is new (live since 21 October 2026), that coverage varies by area, that the bar data has not had a paying customer yet (as of 25 October 2026), and that the agent bar is retired. Do not quietly delete it to make the page read stronger; re-date it when a fact changes.
 
 ## Email addresses that exist
 
@@ -45,13 +45,14 @@ Both may route into the Freshdesk queue shared with loyalty.dog. That is fine �
 
 ## Verifying numbers
 
-Live, public, unauthenticated. Figures on the page as of 18 October 2026:
+Live, public, unauthenticated. Figures on the page as of 25 October 2026:
 
 ```
-GET https://ai.drinkedin.net/api/health                 # features.virtual_venues → 4,986 virtual venues
+GET https://drinkedin.net/api/data/v1/products         # products.bars.records_available → 4,351 licensed premises in the Bars data feed
 GET https://ai.drinkedin.net/api/cocktails/            # pagination.total → 9,442 cocktail recipes
-GET https://drinkedin.net/api/data/v1/products         # products.bars.records_available → 4,250 licensed premises in the Bars data feed
 ```
+
+The virtual-venue count left the page with the agent bar (SWE-1600).
 
 Directory totals and logged-conversation totals are not publicly measurable, so the page does not show them.
 

@@ -1,4 +1,4 @@
-// DrinkedIn for Brands — page behaviour.
+// DrinkedIn for Business — page behaviour.
 //
 // Deliberately small. The hero animates via CSS (staggered animation-delay);
 // JS only handles the mobile menu and form state. There is no scroll-in
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('.form');
     if (!form) return;
 
-    // Deep links like /?interest=Research preselect the dropdown, so a link
+    // Deep links like /?interest=Data%20licence preselect the dropdown, so a link
     // from elsewhere can drop someone into the right conversation.
     const select = form.querySelector('#interest');
     const wanted = new URLSearchParams(window.location.search).get('interest');

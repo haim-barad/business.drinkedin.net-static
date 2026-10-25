@@ -1,5 +1,5 @@
 /* ==========================================================================
-   DrinkedIn for Brands
+   DrinkedIn for Business
    Concept: "last call, for machines" -- a dim bar rendered through a terminal.
    Warm brass and lamplight (the bar) against mono type and precise rules
    (the machines). The tension between the two is the whole product.
@@ -981,13 +981,17 @@ p:last-child { margin-bottom: 0; }
     .offer-group { padding: 18px 14px; }
 }
 
-/* At 320px the mark, "for Brands" at the 14px floor and a 44px menu button
+/* At 320px the mark, "for Business" at the 14px floor and a 44px menu button
    only just fit in the masthead; tighten the mark rather than shrink the type. */
 @media (max-width: 380px) {
-    .mark { gap: 10px; }
-    .mark-img { padding: 9px 8px; }
-    .mark-sub { letter-spacing: .02em; }
+    .mark { gap: 8px; }
+    .mark-img { padding: 9px 6px; }
+    .mark-sub { letter-spacing: 0; }
 }
+
+/* Inline URLs in body copy (the Night Out MCP address) have no break point; at 320px one
+   pushed the page 36px wide. Let them wrap anywhere. */
+.chapter-body p code, .standing p code { overflow-wrap: anywhere; }
 
 /* 404 keeps a visible "Back to site" control at <=720px. The full button
    does not fit beside the mark under ~440px, so this page's header may wrap
