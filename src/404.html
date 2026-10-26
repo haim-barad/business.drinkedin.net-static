@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Warm the connection to drinkedin.net: the consent script below is a
-         synchronous cross-origin request that blocks rendering. -->
+    <!-- Warm the connection to drinkedin.net. The consent script is deferred
+         so it does not block rendering; preconnect still opens the connection. -->
     <link rel="preconnect" href="https://drinkedin.net">
     <!-- SWE-1240: the shared DrinkedIn consent + Google Analytics loader (Google
          Consent Mode v2), served from drinkedin.net so both sites share one
@@ -11,8 +11,10 @@
          and one consent-mode switch. Advanced mode: gtag.js loads with every
          signal denied (cookieless pings); GA cookies only after Accept. The ?v=
          is a cache buster: keep it equal to SCRIPT_VERSION in
-         haim-barad/drinkedin backend/tests/test_consent_analytics.py. -->
-    <script src="https://drinkedin.net/consent-analytics.js?v=3"></script>
+         haim-barad/drinkedin backend/tests/test_consent_analytics.py.
+         Deferred: this page loads no other Google tag, and the script does not
+         use document.write. v=4 confirmed live on drinkedin.net before this bump. -->
+    <script defer src="https://drinkedin.net/consent-analytics.js?v=4"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Not found — DrinkedIn for Brands</title>
     <meta name="robots" content="noindex">

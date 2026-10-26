@@ -1,4 +1,53 @@
+# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
+
+# Explicit per-UA allow for the crawlers that build LLM/agent corpora.
+# All listed UAs already pass under the wildcard above. These lines match
+# drinkedin.net and keep the policy visible if the wildcard is tightened.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# LLM overview for this site: https://business.drinkedin.net/llms.txt
+# Platform LLM overview: https://drinkedin.net/llms.txt
 
 Sitemap: https://business.drinkedin.net/sitemap.xml
