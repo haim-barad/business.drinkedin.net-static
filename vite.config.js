@@ -1,9 +1,24 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
+import { generateSitemap } from './scripts/generate-sitemap.mjs';
+
+function sitemapLastmod() {
+  return {
+    name: 'sitemap-lastmod',
+    apply: 'build',
+    enforce: 'post',
+    // Runs after the public dir is copied, so dist/sitemap.xml carries
+    // lastmod from git rather than the dateless file in public/.
+    closeBundle() {
+      generateSitemap(resolve(__dirname, 'dist/sitemap.xml'));
+    }
+  };
+}
 
 export default defineConfig({
   root: 'src',
   publicDir: '../public',
+  plugins: [sitemapLastmod()],
   build: {
     outDir: '../dist',
     emptyOutDir: true,

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- The production sitemap is dist/sitemap.xml. The build overwrites it with a lastmod per URL. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://business.drinkedin.net/</loc>
