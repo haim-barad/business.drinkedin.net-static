@@ -5,16 +5,12 @@
     <!-- Warm the connection to drinkedin.net. The consent script is deferred
          so it does not block rendering; preconnect still opens the connection. -->
     <link rel="preconnect" href="https://drinkedin.net">
-    <!-- SWE-1240: the shared DrinkedIn consent + Google Analytics loader (Google
-         Consent Mode v2), served from drinkedin.net so both sites share one
-         script, one consent cookie (drinkedin_cookie_consent on .drinkedin.net)
-         and one consent-mode switch. Advanced mode: gtag.js loads with every
-         signal denied (cookieless pings); GA cookies only after Accept. The ?v=
-         is a cache buster: keep it equal to SCRIPT_VERSION in
-         haim-barad/drinkedin backend/tests/test_consent_analytics.py.
-         Deferred: this page loads no other Google tag, and the script does not
-         use document.write. v=6 confirmed live on drinkedin.net before this bump. -->
-    <script defer src="https://drinkedin.net/consent-analytics.js?v=6"></script>
+    <!-- SWE-1240: lead-track.js injects the shared DrinkedIn consent loader
+         (consent-analytics.js?v=6) except on *.pages.dev. It also sends
+         generate_lead only after Accept. This page loads no other Google tag.
+         v=6 matches SCRIPT_VERSION in haim-barad/drinkedin
+         backend/tests/test_consent_analytics.py. -->
+    <script type="module" src="./scripts/lead-track.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service for the DrinkedIn for Business website</title>
     <meta name="description" content="Terms governing business.drinkedin.net, the site that describes DrinkedIn's Night Out planner and its licensed bar data. Nothing is sold or ordered here.">
@@ -195,7 +191,7 @@
 
             <h2>Contact</h2>
             <p>
-                <!--email_off--><a href="mailto:sales@drinkedin.net">sales@drinkedin.net</a><!--/email_off-->
+                <!--email_off--><a href="mailto:sales@drinkedin.net" data-track="generate_lead" data-track-lead-type="mailto">sales@drinkedin.net</a><!--/email_off-->
             </p>
         </div>
     </main>

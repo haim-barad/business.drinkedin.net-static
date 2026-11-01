@@ -11,16 +11,12 @@
     <!-- Warm the connection to drinkedin.net. The consent script is deferred
          so it does not block rendering; preconnect still opens the connection. -->
     <link rel="preconnect" href="https://drinkedin.net">
-    <!-- SWE-1240: the shared DrinkedIn consent + Google Analytics loader (Google
-         Consent Mode v2), served from drinkedin.net so both sites share one
-         script, one consent cookie (drinkedin_cookie_consent on .drinkedin.net)
-         and one consent-mode switch. Advanced mode: gtag.js loads with every
-         signal denied (cookieless pings); GA cookies only after Accept. The ?v=
-         is a cache buster: keep it equal to SCRIPT_VERSION in
-         haim-barad/drinkedin backend/tests/test_consent_analytics.py.
-         Deferred: this page loads no other Google tag, and the script does not
-         use document.write. v=6 confirmed live on drinkedin.net before this bump. -->
-    <script defer src="https://drinkedin.net/consent-analytics.js?v=6"></script>
+    <!-- SWE-1240: lead-track.js injects the shared DrinkedIn consent loader
+         (consent-analytics.js?v=6) except on *.pages.dev. It also sends
+         generate_lead only after Accept. This page loads no other Google tag.
+         v=6 matches SCRIPT_VERSION in haim-barad/drinkedin
+         backend/tests/test_consent_analytics.py. -->
+    <script type="module" src="./scripts/lead-track.js"></script>
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://business.drinkedin.net/">
@@ -98,7 +94,7 @@
                     <li><a href="#developers">Developers</a></li>
                     <li><a href="#limits">What we won't sell</a></li>
                 </ul>
-                <a href="#contact" class="btn btn-solid btn-sm">Start a conversation</a>
+                <a href="#contact" class="btn btn-solid btn-sm" data-track="generate_lead" data-track-lead-type="cta">Start a conversation</a>
                 <button class="burger" aria-label="Toggle menu" aria-expanded="false">
                     <span></span><span></span>
                 </button>
@@ -128,7 +124,7 @@
                         The licensed bar data behind it is what we sell.
                     </p>
                     <div class="hero-actions reveal" style="--d:220ms">
-                        <a href="#contact" class="btn btn-solid">Start a conversation</a>
+                        <a href="#contact" class="btn btn-solid" data-track="generate_lead" data-track-lead-type="cta">Start a conversation</a>
                         <a href="#how" class="btn btn-ghost">How it works</a>
                     </div>
                     <p class="hero-foot reveal" style="--d:300ms">
@@ -439,7 +435,7 @@
                     a partner we've lost.
                 </p>
                 <p class="standing-cta">
-                    <a href="#contact" class="btn btn-solid">Start a conversation</a>
+                    <a href="#contact" class="btn btn-solid" data-track="generate_lead" data-track-lead-type="cta">Start a conversation</a>
                 </p>
             </div>
         </section>
@@ -455,7 +451,7 @@
                         tell you this isn't a fit than take the meeting.
                     </p>
                     <p class="contact-direct">
-                        <!--email_off--><a href="mailto:sales@drinkedin.net">sales@drinkedin.net</a><!--/email_off-->
+                        <!--email_off--><a href="mailto:sales@drinkedin.net" data-track="generate_lead" data-track-lead-type="mailto">sales@drinkedin.net</a><!--/email_off-->
                     </p>
                     <p class="contact-note">
                         Building an assistant? You don't need to write to us: start at
@@ -467,7 +463,7 @@
                     </p>
                 </div>
 
-                <form class="form" action="https://formspree.io/f/mldnyrgw" method="POST">
+                <form class="form" action="https://formspree.io/f/mldnyrgw" method="POST" data-track="generate_lead" data-track-lead-type="form">
                     <div class="field-row">
                         <div class="field">
                             <label for="name">Name <span aria-hidden="true">*</span></label>
