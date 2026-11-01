@@ -139,12 +139,12 @@ test('sitemap lastmod comes from the last git commit that touched each page', ()
   }
 });
 
-test('every built page loads the deferred consent script at v4', () => {
+test('every built page loads the deferred consent script at v6', () => {
   const htmlFiles = walkFiles(dist).filter((path) => path.endsWith('.html'));
   assert.ok(htmlFiles.length >= 4);
   for (const path of htmlFiles) {
     const html = readFileSync(path, 'utf8');
-    assert.match(html, /<script\s+defer\s+src="https:\/\/drinkedin\.net\/consent-analytics\.js\?v=5"><\/script>/);
+    assert.match(html, /<script\s+defer\s+src="https:\/\/drinkedin\.net\/consent-analytics\.js\?v=6"><\/script>/);
   }
 });
 

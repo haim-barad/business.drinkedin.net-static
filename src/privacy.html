@@ -13,8 +13,8 @@
          is a cache buster: keep it equal to SCRIPT_VERSION in
          haim-barad/drinkedin backend/tests/test_consent_analytics.py.
          Deferred: this page loads no other Google tag, and the script does not
-         use document.write. v=4 confirmed live on drinkedin.net before this bump. -->
-    <script defer src="https://drinkedin.net/consent-analytics.js?v=5"></script>
+         use document.write. v=6 confirmed live on drinkedin.net before this bump. -->
+    <script defer src="https://drinkedin.net/consent-analytics.js?v=6"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy for the DrinkedIn for Business website</title>
     <meta name="description" content="What business.drinkedin.net collects: the contact form you submit and Google Analytics under Consent Mode, who processes it, and how to ask for deletion.">
@@ -98,7 +98,7 @@
     <main class="doc">
         <div class="shell doc-inner">
             <h1>Privacy Policy</h1>
-            <p class="doc-date">Last updated 25 September 2026</p>
+            <p class="doc-date">Last updated 1 November 2026</p>
 
             <p>
                 This policy covers <strong>business.drinkedin.net</strong> only &mdash; the
@@ -127,11 +127,26 @@
                     aggregate modelling of overall traffic. Analytics cookies
                     (<code>_ga</code>, <code>_ga_*</code>) are only set after you accept;
                     with them we count visits, see which sections are read, and record
-                    approximate location, device, and referring page. Advertising storage
-                    and ad personalisation are always off. We do not combine analytics
-                    with contact-form submissions.
+                    approximate location, device, and referring page. Each page view
+                    carries the page address and the address of the page you came from,
+                    both cut before any &ldquo;?&rdquo; or &ldquo;#&rdquo; (so no search
+                    terms), and the page title. The shared script can also send a few
+                    click events under the same rules, with short fixed labels such as
+                    the kind of page or link, and never what you type or your location;
+                    no link on this site sends one today. Advertising storage and ad
+                    personalisation are always off. We do not combine analytics with
+                    contact-form submissions.
                 </li>
             </ul>
+            <p>
+                Separately, on the DrinkedIn platform itself: when we turn on sending
+                usage counts to Google Analytics, our server sends it a count of each
+                tool call an AI assistant makes to DrinkedIn's MCP servers and of each
+                redirect through a partner booking link. These counts carry no IP
+                address, browser details, location, text or identifier. The
+                <a href="https://drinkedin.net/privacy" target="_blank" rel="noopener noreferrer">drinkedin.net privacy policy</a>
+                covers the platform.
+            </p>
             <p>
                 We do not sell products on this site, so we never see or store payment
                 details here. We do not sell, rent, or trade your personal information to
