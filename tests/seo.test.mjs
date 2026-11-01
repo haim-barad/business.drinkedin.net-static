@@ -139,12 +139,37 @@ test('sitemap lastmod comes from the last git commit that touched each page', ()
   }
 });
 
-test('every built page loads the deferred consent script at v6', () => {
+function moduleGraph(html) {
+  const srcs = [...html.matchAll(/<(?:script type="module"|link rel="modulepreload")[^>]*(?:src|href)="([^"]+\.js)"/g)].map(
+    (match) => match[1]
+  );
+  const seen = new Set();
+  let code = '';
+  const queue = [...srcs];
+  while (queue.length) {
+    const src = queue.pop();
+    if (seen.has(src)) continue;
+    seen.add(src);
+    const file = join(dist, src.replace(/^\//, ''));
+    const text = readFileSync(file, 'utf8');
+    code += text;
+    for (const match of text.matchAll(/import"(\.\/[^"]+\.js)"/g)) {
+      queue.push(`/assets/${match[1].slice(2)}`);
+    }
+  }
+  return code;
+}
+
+test('every built page loads lead-track and does not embed a consent script tag', () => {
   const htmlFiles = walkFiles(dist).filter((path) => path.endsWith('.html'));
   assert.ok(htmlFiles.length >= 4);
   for (const path of htmlFiles) {
     const html = readFileSync(path, 'utf8');
-    assert.match(html, /<script\s+defer\s+src="https:\/\/drinkedin\.net\/consent-analytics\.js\?v=6"><\/script>/);
+    const code = moduleGraph(html);
+    assert.match(code, /https:\/\/drinkedin\.net\/consent-analytics\.js\?v=6/, path);
+    assert.match(code, /pages\.dev/, path);
+    assert.equal(code.includes('googletagmanager'), false, path);
+    assert.doesNotMatch(html, /<script[^>]*\ssrc="https:\/\/drinkedin\.net\/consent-analytics\.js/);
   }
 });
 

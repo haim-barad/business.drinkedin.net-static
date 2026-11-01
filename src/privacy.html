@@ -5,16 +5,12 @@
     <!-- Warm the connection to drinkedin.net. The consent script is deferred
          so it does not block rendering; preconnect still opens the connection. -->
     <link rel="preconnect" href="https://drinkedin.net">
-    <!-- SWE-1240: the shared DrinkedIn consent + Google Analytics loader (Google
-         Consent Mode v2), served from drinkedin.net so both sites share one
-         script, one consent cookie (drinkedin_cookie_consent on .drinkedin.net)
-         and one consent-mode switch. Advanced mode: gtag.js loads with every
-         signal denied (cookieless pings); GA cookies only after Accept. The ?v=
-         is a cache buster: keep it equal to SCRIPT_VERSION in
-         haim-barad/drinkedin backend/tests/test_consent_analytics.py.
-         Deferred: this page loads no other Google tag, and the script does not
-         use document.write. v=6 confirmed live on drinkedin.net before this bump. -->
-    <script defer src="https://drinkedin.net/consent-analytics.js?v=6"></script>
+    <!-- SWE-1240: lead-track.js injects the shared DrinkedIn consent loader
+         (consent-analytics.js?v=6) except on *.pages.dev. It also sends
+         generate_lead only after Accept. This page loads no other Google tag.
+         v=6 matches SCRIPT_VERSION in haim-barad/drinkedin
+         backend/tests/test_consent_analytics.py. -->
+    <script type="module" src="./scripts/lead-track.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy for the DrinkedIn for Business website</title>
     <meta name="description" content="What business.drinkedin.net collects: the contact form you submit and Google Analytics under Consent Mode, who processes it, and how to ask for deletion.">
@@ -130,13 +126,17 @@
                     approximate location, device, and referring page. Each page view
                     carries the page address and the address of the page you came from,
                     both cut before any &ldquo;?&rdquo; or &ldquo;#&rdquo; (so no search
-                    terms), and the page title. The shared script can also send a few
-                    click events under the same rules, with short fixed labels such as
-                    the kind of page, link or list, a stop count or the city of the page;
-                    the labels never include what you type or your location, and no link
-                    on this site sends one today. Advertising storage and ad
-                    personalisation are always off. We do not combine analytics with
-                    contact-form submissions.
+                    terms), and the page title. After you accept, using a Start a
+                    conversation button, submitting the contact form, or using an email
+                    link each sends an event named <code>generate_lead</code>. It carries
+                    one fixed label, <code>lead_type</code>: <code>cta</code>,
+                    <code>form</code>, or <code>mailto</code>, in that order. It is not
+                    sent before you accept or if you decline. The label is only that
+                    word: not the button text, not what you type, and not the email
+                    address. The event carries the same page address, referring address
+                    and title already described above, and nothing from the form.
+                    Advertising storage and ad personalisation are always off. We do
+                    not combine analytics with contact-form submissions.
                 </li>
             </ul>
             <p>
@@ -196,7 +196,7 @@
                 not work around them.
             </p>
             <p>
-                Write to <!--email_off--><a href="mailto:support@drinkedin.net">support@drinkedin.net</a><!--/email_off-->.
+                Write to <!--email_off--><a href="mailto:support@drinkedin.net" data-track="generate_lead" data-track-lead-type="mailto">support@drinkedin.net</a><!--/email_off-->.
                 A human reads it.
             </p>
 
