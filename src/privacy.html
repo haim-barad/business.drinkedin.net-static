@@ -132,18 +132,23 @@
                     both cut before any &ldquo;?&rdquo; or &ldquo;#&rdquo; (so no search
                     terms), and the page title. The shared script can also send a few
                     click events under the same rules, with short fixed labels such as
-                    the kind of page or link, and never what you type or your location;
-                    no link on this site sends one today. Advertising storage and ad
+                    the kind of page, link or list, a stop count or the city of the page;
+                    the labels never include what you type or your location, and no link
+                    on this site sends one today. Advertising storage and ad
                     personalisation are always off. We do not combine analytics with
                     contact-form submissions.
                 </li>
             </ul>
             <p>
                 Separately, on the DrinkedIn platform itself: when we turn on sending
-                usage counts to Google Analytics, our server sends it a count of each
-                tool call an AI assistant makes to DrinkedIn's MCP servers and of each
-                redirect through a partner booking link. These counts carry no IP
-                address, browser details, location, text or identifier. The
+                usage counts to Google Analytics, our server sends it one event per tool
+                call an AI assistant makes to DrinkedIn's MCP servers (the tool's name,
+                whether the call worked and the kind of assistant), one per Night Out
+                plan (the outcome, the number of stops, whether a style was asked for and
+                the kind of assistant), and one per redirect through a partner booking
+                link (the partner, the style and the venue's country). Each event has a
+                new random id and carries no IP address, browser details, referring page,
+                location of the person, text or other identifier. The
                 <a href="https://drinkedin.net/privacy" target="_blank" rel="noopener noreferrer">drinkedin.net privacy policy</a>
                 covers the platform.
             </p>
