@@ -385,7 +385,7 @@ test('boot loads the shared consent script and wraps track on the production hos
     assert.equal(win.drinkedinConsent.__generateLeadWrapped, true);
 });
 
-test('markup wires generate_lead on the main CTAs, the contact form, and every mailto', () => {
+test('markup wires generate_lead on the main CTAs, the contact form, and sales mailto links', () => {
     const pages = ['index.html', 'privacy.html', 'terms.html', '404.html'];
     const tracked = [];
     for (const name of pages) {
@@ -395,7 +395,10 @@ test('markup wires generate_lead on the main CTAs, the contact form, and every m
         const tags = element(html, 'a', (tag) => tag.includes('data-track=') || tag.includes('mailto:'));
         const forms = element(html, 'form', () => true);
         for (const tag of tags) {
-            if (tag.includes('mailto:')) {
+            if (tag.includes('mailto:support@')) {
+                assert.equal(attr(tag, 'data-track'), null, name);
+                assert.equal(attr(tag, 'data-track-lead-type'), null, name);
+            } else if (tag.includes('mailto:')) {
                 assert.equal(attr(tag, 'data-track'), 'generate_lead', name);
                 assert.equal(attr(tag, 'data-track-lead-type'), 'mailto', name);
             }
@@ -417,8 +420,8 @@ test('markup wires generate_lead on the main CTAs, the contact form, and every m
     }
     const ofType = (type) => tracked.filter((item) => attr(item.tag, 'data-track-lead-type') === type);
     assert.equal(ofType('cta').length, 3);
-    assert.equal(ofType('mailto').length, 3);
-    assert.equal(tracked.length, 6);
+    assert.equal(ofType('mailto').length, 2);
+    assert.equal(tracked.length, 5);
     const index = read('index.html');
     const contactLinks = element(index, 'a', (tag) => tag.includes('href="#contact"'));
     const trackedContact = contactLinks.filter((tag) => tag.includes('data-track='));
@@ -435,7 +438,10 @@ test('privacy names the lead event and no longer claims this site sends none', (
     assert.match(html, /cta/);
     assert.match(html, /form/);
     assert.match(html, /mailto/);
-    assert.match(html, /not\s+sent before you accept or if you decline/);
+    assert.match(html, /not\s+sent before\s+you accept or if you decline/);
+    assert.match(html, /support@drinkedin\.net<\/code>\s+from this page does not/);
+    assert.doesNotMatch(html, /in that order/);
+    assert.doesNotMatch(html, /mailto:support@drinkedin\.net"[^>]*data-track/);
     assert.doesNotMatch(html, /no link on this site sends one today/);
     assert.match(html, /do\s+not combine analytics with/);
 });

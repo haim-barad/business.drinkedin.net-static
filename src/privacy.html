@@ -126,15 +126,19 @@
                     approximate location, device, and referring page. Each page view
                     carries the page address and the address of the page you came from,
                     both cut before any &ldquo;?&rdquo; or &ldquo;#&rdquo; (so no search
-                    terms), and the page title. After you accept, using a Start a
-                    conversation button, submitting the contact form, or using an email
-                    link each sends an event named <code>generate_lead</code>. It carries
-                    one fixed label, <code>lead_type</code>: <code>cta</code>,
-                    <code>form</code>, or <code>mailto</code>, in that order. It is not
-                    sent before you accept or if you decline. The label is only that
-                    word: not the button text, not what you type, and not the email
-                    address. The event carries the same page address, referring address
-                    and title already described above, and nothing from the form.
+                    terms), and the page title. After you accept, a Start a conversation
+                    button sends an event named <code>generate_lead</code>, with
+                    <code>lead_type</code> <code>cta</code>. Submitting the contact form
+                    sends the same event with <code>lead_type</code> <code>form</code>, and
+                    a link that opens an email to <code>sales@drinkedin.net</code> sends it
+                    with <code>lead_type</code> <code>mailto</code>. Writing to
+                    <code>support@drinkedin.net</code> from this page does not: a privacy or
+                    deletion request is not counted as a lead. The event is not sent before
+                    you accept or if you decline.
+                    The label is only that word: not the button text, not what you type,
+                    and not the email address. Each event carries the same page address,
+                    referring address and title already described above, and nothing from
+                    the form.
                     Advertising storage and ad personalisation are always off. We do
                     not combine analytics with contact-form submissions.
                 </li>
@@ -196,7 +200,7 @@
                 not work around them.
             </p>
             <p>
-                Write to <!--email_off--><a href="mailto:support@drinkedin.net" data-track="generate_lead" data-track-lead-type="mailto">support@drinkedin.net</a><!--/email_off-->.
+                Write to <!--email_off--><a href="mailto:support@drinkedin.net">support@drinkedin.net</a><!--/email_off-->.
                 A human reads it.
             </p>
 
