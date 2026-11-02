@@ -12,9 +12,9 @@
          so it does not block rendering; preconnect still opens the connection. -->
     <link rel="preconnect" href="https://drinkedin.net">
     <!-- SWE-1240: lead-track.js injects the shared DrinkedIn consent loader
-         (consent-analytics.js?v=6) except on *.pages.dev. It also sends
+         (consent-analytics.js?v=7) except on *.pages.dev. It also sends
          generate_lead only after Accept. This page loads no other Google tag.
-         v=6 matches SCRIPT_VERSION in haim-barad/drinkedin
+         v=7 matches SCRIPT_VERSION in haim-barad/drinkedin
          backend/tests/test_consent_analytics.py. -->
     <script type="module" src="./scripts/lead-track.js"></script>
 
