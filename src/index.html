@@ -12,9 +12,9 @@
          so it does not block rendering; preconnect still opens the connection. -->
     <link rel="preconnect" href="https://drinkedin.net">
     <!-- SWE-1240: lead-track.js injects the shared DrinkedIn consent loader
-         (consent-analytics.js?v=7) except on *.pages.dev. It also sends
+         (consent-analytics.js?v=8) except on *.pages.dev. It also sends
          generate_lead only after Accept. This page loads no other Google tag.
-         v=7 matches SCRIPT_VERSION in haim-barad/drinkedin
+         v=8 matches SCRIPT_VERSION in haim-barad/drinkedin
          backend/tests/test_consent_analytics.py. -->
     <script type="module" src="./scripts/lead-track.js"></script>
 
@@ -245,7 +245,7 @@
                                     <tr>
                                         <th scope="row">Cocktails</th>
                                         <td class="price">$29/mo</td>
-                                        <td>Or $0.005 per record over x402. Cocktail recipes. Recipe instructions are a legacy import of unestablished origin; we do not represent them as ours to sublicense.</td>
+                                        <td>Or $0.005 per record over x402. Cocktail records: name, ingredients, glass and the other recipe facts, plus a description DrinkedIn composes from them. Legacy recipe instructions are not included, images only when DrinkedIn's own generator made them, and each row labels its generated fields. The legacy recipe data's origin is not established, and we do not represent it as ours to sublicense.</td>
                                     </tr>
                                 </tbody>
                             </table>

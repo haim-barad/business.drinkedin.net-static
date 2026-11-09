@@ -16,7 +16,7 @@ import {
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const srcDir = join(root, 'src');
-const CONSENT_SRC = 'https://drinkedin.net/consent-analytics.js?v=7';
+const CONSENT_SRC = 'https://drinkedin.net/consent-analytics.js?v=8';
 
 function read(name) {
     return readFileSync(join(srcDir, name), 'utf8');

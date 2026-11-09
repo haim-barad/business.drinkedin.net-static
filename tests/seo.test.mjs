@@ -166,7 +166,7 @@ test('every built page loads lead-track and does not embed a consent script tag'
   for (const path of htmlFiles) {
     const html = readFileSync(path, 'utf8');
     const code = moduleGraph(html);
-    assert.match(code, /https:\/\/drinkedin\.net\/consent-analytics\.js\?v=7/, path);
+    assert.match(code, /https:\/\/drinkedin\.net\/consent-analytics\.js\?v=8/, path);
     assert.match(code, /pages\.dev/, path);
     assert.equal(code.includes('googletagmanager'), false, path);
     assert.doesNotMatch(html, /<script[^>]*\ssrc="https:\/\/drinkedin\.net\/consent-analytics\.js/);
