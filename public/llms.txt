@@ -9,7 +9,7 @@ Night Out is an MCP server at https://ai.drinkedin.net/mcp/night-out. An assista
 The data is what DrinkedIn sells. Prices as of 2026-10-25; https://drinkedin.net/pricing is authoritative. One licence covers one product. An empty page is never charged.
 
 - Bars — $49/mo, or $0.005 per record over x402 (USDC on Base) — licensed alcohol premises from public alcohol-licensing registers
-- Cocktails — $29/mo, or $0.005 per record over x402 — cocktail recipes; recipe instructions are a legacy import of unestablished origin
+- Cocktails — $29/mo, or $0.005 per record over x402 — cocktail records (name, ingredients, glass type; several fields are placeholders, see the feed's notes), a labelled AI-generated description where one exists, no legacy recipe instructions, images only from DrinkedIn's own generator (most rows have none); the legacy data's origin is not established
 
 Bar and brand sponsorship has paused. Bars and brands: contact sales@drinkedin.net.
 

@@ -1,6 +1,6 @@
 // generate_lead for the business site, through the shared DrinkedIn loader.
 //
-// consent-analytics.js (v=7, from drinkedin.net) already listens for
+// consent-analytics.js (v=8, from drinkedin.net) already listens for
 // data-track and data-track-* and sends the event through track(). Two gaps:
 //
 //   * TRACK_PARAMS does not include lead_type, so a coarse label is dropped.
@@ -16,7 +16,7 @@
 // click cannot land on the unwrapped track(). If that loader has no
 // data-track listener, the same wrap is driven by a fallback listener.
 
-const CONSENT_SRC = 'https://drinkedin.net/consent-analytics.js?v=7';
+const CONSENT_SRC = 'https://drinkedin.net/consent-analytics.js?v=8';
 const LEAD_TYPES = new Set(['cta', 'form', 'mailto']);
 const WATCH_TRIES = 40;
 const WATCH_MS = 100;
