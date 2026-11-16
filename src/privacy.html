@@ -94,7 +94,7 @@
     <main class="doc">
         <div class="shell doc-inner">
             <h1>Privacy Policy</h1>
-            <p class="doc-date">Last updated 1 November 2026</p>
+            <p class="doc-date">Last updated 16 November 2026</p>
 
             <p>
                 This policy covers <strong>business.drinkedin.net</strong> only &mdash; the
@@ -152,14 +152,27 @@
             </ul>
             <p>
                 Separately, on the DrinkedIn platform itself: when we turn on sending
-                usage counts to Google Analytics, our server sends it one event per tool
-                call an AI assistant makes to DrinkedIn's MCP servers (the tool's name,
-                whether the call worked and the kind of assistant), one per Night Out
-                plan (the outcome, the number of stops, whether a style was asked for and
-                the kind of assistant), and one per redirect through a partner booking
-                link (the partner, the style and the venue's country). Each event has a
-                new random id and carries no IP address, browser details, referring page,
-                location of the person, text or other identifier. The
+                usage counts to Google Analytics, our server sends one
+                <code>night_out_plan</code> event per Night Out plan (the outcome, the
+                number of stops, whether a style was asked for and the kind of
+                assistant) and one <code>agent_tool_call</code> event per tool call an
+                AI assistant makes to DrinkedIn's MCP servers, Night Out or the data
+                server (the tool's name, whether the call worked, was refused or
+                required payment, and the kind of assistant). Each event carries a
+                pseudonymous id that is the same for one kind of assistant on one UTC
+                day: a one-way hash of that kind, the date and a server salt. No IP
+                address is used or stored. The event carries no app name, browser
+                details, location of the person, text you or the assistant sent, or
+                raw address. Our own test calls are not sent. Two further counts stay
+                off unless we turn them on: a coarse page type when a known crawler
+                fetches a public page, and a coarse group and result for API requests.
+                Those use the same kind of id. For each redirect through a partner
+                booking link, our server sends one <code>outbound_partner</code> event
+                with only the partner, the route style and the venue's country, and a
+                pseudonymous id shared by partner-link events on that UTC day. No IP
+                address is used or stored, and no browser or app name, account,
+                location or raw address is sent. We send that event only when the
+                browser has accepted analytics cookies. The
                 <a href="https://drinkedin.net/privacy" target="_blank" rel="noopener noreferrer">drinkedin.net privacy policy</a>
                 covers the platform.
             </p>
