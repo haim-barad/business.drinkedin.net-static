@@ -446,6 +446,25 @@ test('privacy names the lead event and no longer claims this site sends none', (
     assert.match(html, /do\s+not combine analytics with/);
 });
 
+test('privacy platform counts match the drinkedin.net disclosure', () => {
+    const html = read('privacy.html');
+    const start = html.indexOf('Separately, on the DrinkedIn platform itself');
+    const end = html.indexOf('covers the platform.');
+    assert.ok(start > 0 && end > start);
+    const para = html.slice(start, end).replace(/\s+/g, ' ');
+    assert.match(para, /when we turn on sending usage counts to Google Analytics/);
+    assert.match(para, /night_out_plan/);
+    assert.match(para, /agent_tool_call/);
+    assert.match(para, /was refused or required payment/);
+    assert.match(para, /pseudonymous id that is the same for one kind of assistant on one UTC day/);
+    assert.match(para, /Two further counts stay off unless we turn them on/);
+    assert.match(para, /outbound_partner/);
+    assert.match(para, /only when the browser has accepted analytics cookies/);
+    assert.doesNotMatch(para, /new random id/);
+    const conditional = para.slice(0, para.indexOf('Two further counts'));
+    assert.doesNotMatch(conditional, /outbound_partner/);
+});
+
 test('the lead script does not embed a measurement id or a gtag snippet', () => {
     const js = readFileSync(join(srcDir, 'scripts/lead-track.js'), 'utf8');
     assert.match(js, new RegExp(CONSENT_SRC.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
