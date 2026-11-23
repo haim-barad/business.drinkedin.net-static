@@ -8,7 +8,11 @@
 // facts, and animating them up from zero makes measurements feel like
 // decoration.
 
+import { mountSelfServeOffers } from './self-serve-offers.js';
+
 document.addEventListener('DOMContentLoaded', () => {
+    mountSelfServeOffers();
+
     /* ── mobile menu ──────────────────────────────────────────────────── */
     const burger = document.querySelector('.burger');
     const navList = document.querySelector('.nav-list');
