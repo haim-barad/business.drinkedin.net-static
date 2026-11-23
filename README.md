@@ -10,6 +10,14 @@ The stats row is three counts measured from the public API. See CLAUDE.md.
 
 The palette is the one in the Design section of CLAUDE.md.
 
+Self-serve products on the page (account-list scan, outlet density,
+licence status lookup, weekly lead feed) are toggled in
+`src/scripts/self-serve-offers.js` (`SELF_SERVE_OFFERS`). Each product is
+`coming_soon` or `hidden` by default. Set `status` to `live` only after
+that feature is enabled on production drinkedin.net. A pay button appears
+only when `paymentLink` is a real `https://buy.stripe.com/…` URL already
+in use; never invent one. This page does not list a lookup price.
+
 ## Development
 
 ### Prerequisites
