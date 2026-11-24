@@ -42,7 +42,7 @@ export const SELF_SERVE_OFFERS = {
     // TODO: paste an existing Academic, Government, or Commercial buy.stripe.com Payment Link when live.
     paymentLink: "",
     blurb:
-      "An extract of outlet density for a chosen area. Fulfilment stays manual. Payment Links, when configured, are the ones already referenced on drinkedin.net.",
+      "An extract of outlet density for a chosen area. Fulfilment stays manual.",
   },
   licence_status_lookup: {
     id: "licence-status-lookup",

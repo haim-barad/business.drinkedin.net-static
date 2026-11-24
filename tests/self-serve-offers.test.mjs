@@ -50,6 +50,8 @@ test('default render: products link to drinkedin.net; outlet density is a previe
   assert.match(html, /href="https:\/\/drinkedin\.net\/data#licence-status-lookup"/);
   assert.doesNotMatch(html, /Coming soon/);
   assert.equal((html.match(/Preview live, ordering opens soon/g) || []).length, 1);
+  assert.match(html, /Fulfilment stays manual\./);
+  assert.doesNotMatch(html, /when configured, are the ones already referenced/);
   assert.match(
     html,
     /id="outlet-density" data-status="preview">\s*<h4>Outlet density extract<\/h4>\s*<p class="offer-status">Preview live, ordering opens soon<\/p>/
