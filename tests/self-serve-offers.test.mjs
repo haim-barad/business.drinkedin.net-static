@@ -14,31 +14,47 @@ import {
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 
-test('default config is coming soon or hidden, with no live Payment Links or prices', () => {
+test('default config: only products enabled on production are live, with no Payment Links', () => {
   const items = Object.values(SELF_SERVE_OFFERS);
   assert.ok(items.length >= 4);
+  const status = Object.fromEntries(
+    Object.entries(SELF_SERVE_OFFERS).map(([key, item]) => [key, item.status])
+  );
+  assert.deepEqual(status, {
+    list_scan: 'live',
+    outlet_density: 'coming_soon',
+    licence_status_lookup: 'live',
+    lead_feed: 'live',
+  });
   for (const item of items) {
-    assert.ok(
-      item.status === 'coming_soon' || item.status === 'hidden',
-      `${item.id} default status is ${item.status}`
-    );
     assert.equal(isLivePaymentLink(item.paymentLink), false);
     assert.ok(!String(item.paymentLink).includes('buy.stripe.com'));
-    assert.ok(!JSON.stringify(item).includes('0.05'));
+  }
+  // The only price on the page is the production lookup price.
+  assert.match(SELF_SERVE_OFFERS.licence_status_lookup.blurb, /0\.05 USDC per call/);
+  for (const [key, item] of Object.entries(SELF_SERVE_OFFERS)) {
+    if (key !== 'licence_status_lookup') {
+      assert.ok(!JSON.stringify(item).includes('0.05'), `${key} lists a price`);
+    }
   }
 });
 
-test('coming-soon render has a label and no live CTA', () => {
+test('default render: live products link to drinkedin.net, outlet density stays coming soon', () => {
   const html = renderSelfServeOffers();
-  assert.match(html, /Coming soon/);
   assert.match(html, /Account-list scan/);
   assert.match(html, /Outlet density extract/);
   assert.match(html, /Licence status lookup/);
   assert.match(html, /Weekly new-licence lead feed/);
+  assert.match(html, /href="https:\/\/drinkedin\.net\/data\/list-scan"/);
+  assert.match(html, /href="https:\/\/drinkedin\.net\/data#licence-status-lookup"/);
+  assert.doesNotMatch(html, /drinkedin\.net\/data\/outlet-density/);
+  assert.equal((html.match(/Coming soon/g) || []).length, 1);
+  assert.match(
+    html,
+    /id="outlet-density" data-status="coming_soon">\s*<h4>Outlet density extract<\/h4>\s*<p class="offer-status">Coming soon<\/p>/
+  );
   assert.doesNotMatch(html, /buy\.stripe\.com/);
   assert.doesNotMatch(html, /Pay with Stripe/);
-  assert.doesNotMatch(html, /href="https:\/\/drinkedin\.net\/data/);
-  assert.doesNotMatch(html, /0\.05/);
 });
 
 test('hidden products are omitted', () => {
