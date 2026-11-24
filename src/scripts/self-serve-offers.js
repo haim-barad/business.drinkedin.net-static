@@ -12,11 +12,14 @@
  *
  * Flip a product to "live" only after that feature is enabled on production
  * drinkedin.net. Live since 2026-11-24 (enabled via Emergency ops): list-scan
- * with its free sample, the licence lead feed, and licence status lookup at
- * 0.05 USDC. Outlet density is "preview" since 2026-11-24: its public page returns
- * 200 but every tier is locked (no Payment Link yet), so no price is shown here. Never invent a Payment Link;
- * leave paymentLink empty (or a TODO comment in source) until a real existing
- * buy.stripe.com URL can be pasted.
+ * with its free sample, the licence lead feed, licence status lookup at
+ * 0.05 USDC, the bars-near widget at /embed/bars-near, sample market
+ * reports at /data/sample-reports, and licence-alert signup at
+ * /data/licence-alerts (digests are generated but not sent yet). Outlet
+ * density is "preview" since 2026-11-24: its public page returns 200 but
+ * every tier is locked (no Payment Link yet), so no price is shown here.
+ * Never invent a Payment Link; leave paymentLink empty (or a TODO comment
+ * in source) until a real existing buy.stripe.com URL can be pasted.
  */
 
 const BUY_LINK = /^https:\/\/buy\.stripe\.com\/[A-Za-z0-9_-]+$/;
@@ -62,6 +65,33 @@ export const SELF_SERVE_OFFERS = {
     paymentLink: "",
     blurb:
       "A weekly CSV of newly seen licences on eligible registers. No checkout and no outreach.",
+  },
+  sample_market_reports: {
+    id: "sample-reports",
+    title: "Sample market reports",
+    status: "live",
+    page: "https://drinkedin.net/data/sample-reports",
+    paymentLink: "",
+    blurb:
+      "Sample counts of on-premise outlets taken from redistributable official licence registers. Each sample says an outlet was on the register as of the date we last read that register. Westminster and the City of London are not included. This is not a full extract: names, addresses and licence numbers are withheld. Payment is not configured yet, so the full report stays locked.",
+  },
+  licence_alerts: {
+    id: "licence-alerts",
+    title: "Licence expiry and closure alerts",
+    status: "live",
+    page: "https://drinkedin.net/data/licence-alerts",
+    paymentLink: "",
+    blurb:
+      "Sign up to hear when a redistributable official licence register records an expiry or a closure. Only registers with published reuse terms are included. Westminster and the City of London are not included. Digests are generated, but they are not sent yet.",
+  },
+  bars_near_widget: {
+    id: "bars-near-widget",
+    title: "Bars near here widget",
+    status: "live",
+    page: "https://drinkedin.net/embed/bars-near",
+    paymentLink: "",
+    blurb:
+      "An embeddable list of nearby listed places, for a website or blog. The install snippet on the product page loads an iframe from drinkedin.net. The list and the DrinkedIn attribution backlink are rendered inside that iframe, not in your page. A small script at https://drinkedin.net/embed/bars-near.js can build the same iframe and pass data-lat and data-lng, or ask the browser for a location. The script only sets the iframe src to an https://drinkedin.net URL. Payment is not configured yet, so the no-branding tier stays locked.",
   },
 };
 
