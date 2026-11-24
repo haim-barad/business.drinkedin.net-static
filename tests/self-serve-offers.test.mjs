@@ -25,6 +25,9 @@ test('default config: only products enabled on production are live, with no Paym
     outlet_density: 'preview',
     licence_status_lookup: 'live',
     lead_feed: 'live',
+    sample_market_reports: 'live',
+    licence_alerts: 'coming_soon',
+    bars_near_widget: 'live',
   });
   for (const item of items) {
     assert.equal(isLivePaymentLink(item.paymentLink), false);
@@ -45,10 +48,24 @@ test('default render: products link to drinkedin.net; outlet density is a previe
   assert.match(html, /Outlet density extract/);
   assert.match(html, /Licence status lookup/);
   assert.match(html, /Weekly new-licence lead feed/);
+  assert.match(html, /Sample market reports/);
+  assert.match(html, /Licence expiry and closure alerts/);
+  assert.match(html, /Bars near here widget/);
   assert.match(html, /href="https:\/\/drinkedin\.net\/data\/list-scan"/);
   assert.match(html, /href="https:\/\/drinkedin\.net\/data\/outlet-density"/);
+  assert.match(html, /href="https:\/\/drinkedin\.net\/data\/sample-reports"/);
+  assert.doesNotMatch(html, /href="https:\/\/drinkedin\.net\/data\/licence-alerts"/);
+  assert.match(html, /href="https:\/\/drinkedin\.net\/embed\/bars-near"/);
   assert.match(html, /href="https:\/\/drinkedin\.net\/data#licence-status-lookup"/);
-  assert.doesNotMatch(html, /Coming soon/);
+  assert.match(html, /Digests are generated, but they are not sent yet\./);
+  assert.match(html, /the full report stays locked/);
+  assert.match(html, /the no-branding tier stays locked/);
+  assert.doesNotMatch(html, /21\+/);
+  assert.equal((html.match(/Coming soon/g) || []).length, 1);
+  assert.match(
+    html,
+    /id="licence-alerts" data-status="coming_soon">\s*<h4>Licence expiry and closure alerts<\/h4>\s*<p class="offer-status">Coming soon<\/p>/
+  );
   assert.equal((html.match(/Preview live, ordering opens soon/g) || []).length, 1);
   assert.match(html, /Fulfilment stays manual\./);
   assert.doesNotMatch(html, /when configured, are the ones already referenced/);
@@ -85,15 +102,13 @@ test('a coming_soon product shows the label and no link', () => {
 });
 
 test('hidden products are omitted', () => {
-  const html = renderSelfServeOffers({
-    list_scan: { ...SELF_SERVE_OFFERS.list_scan, status: 'hidden' },
-    outlet_density: { ...SELF_SERVE_OFFERS.outlet_density, status: 'hidden' },
-    licence_status_lookup: {
-      ...SELF_SERVE_OFFERS.licence_status_lookup,
-      status: 'hidden',
-    },
-    lead_feed: { ...SELF_SERVE_OFFERS.lead_feed, status: 'hidden' },
-  });
+  const hidden = Object.fromEntries(
+    Object.entries(SELF_SERVE_OFFERS).map(([key, item]) => [
+      key,
+      { ...item, status: 'hidden' },
+    ])
+  );
+  const html = renderSelfServeOffers(hidden);
   assert.equal(html, '');
   assert.equal(visibleOffers({ list_scan: { status: 'hidden' } }).length, 0);
 });
