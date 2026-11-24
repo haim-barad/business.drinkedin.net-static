@@ -13,9 +13,10 @@
  * Flip a product to "live" only after that feature is enabled on production
  * drinkedin.net. Live since 2026-11-24 (enabled via Emergency ops): list-scan
  * with its free sample, the licence lead feed, licence status lookup at
- * 0.05 USDC, the bars-near widget at /embed/bars-near, sample market
- * reports at /data/sample-reports, and licence-alert signup at
- * /data/licence-alerts (digests are generated but not sent yet). Outlet
+ * 0.05 USDC, the bars-near widget at /embed/bars-near, and sample market
+ * reports at /data/sample-reports. Licence-alert signup stays
+ * "coming_soon" (no page link) until the privacy hold on drinkedin #833
+ * is released. Outlet
  * density is "preview" since 2026-11-24: its public page returns 200 but
  * every tier is locked (no Payment Link yet), so no price is shown here.
  * Never invent a Payment Link; leave paymentLink empty (or a TODO comment
@@ -78,7 +79,7 @@ export const SELF_SERVE_OFFERS = {
   licence_alerts: {
     id: "licence-alerts",
     title: "Licence expiry and closure alerts",
-    status: "live",
+    status: "coming_soon",
     page: "https://drinkedin.net/data/licence-alerts",
     paymentLink: "",
     blurb:
