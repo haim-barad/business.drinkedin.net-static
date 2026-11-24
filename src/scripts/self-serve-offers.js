@@ -4,20 +4,24 @@
  * status:
  *   - "hidden"       omit the product
  *   - "coming_soon"  show the product with a Coming soon label and no CTA
+ *   - "preview"      the drinkedin.net page is up but ordering is not open:
+ *                    a "Preview live, ordering opens soon" label and the page
+ *                    link, never a pay CTA
  *   - "live"         show the drinkedin.net page link, and a pay CTA only when
  *                    paymentLink is a real https://buy.stripe.com/… URL
  *
  * Flip a product to "live" only after that feature is enabled on production
  * drinkedin.net. Live since 2026-11-24 (enabled via Emergency ops): list-scan
  * with its free sample, the licence lead feed, and licence status lookup at
- * 0.05 USDC. Outlet density stays coming_soon while its public page 404s. Never invent a Payment Link;
+ * 0.05 USDC. Outlet density is "preview" since 2026-11-24: its public page returns
+ * 200 but every tier is locked (no Payment Link yet), so no price is shown here. Never invent a Payment Link;
  * leave paymentLink empty (or a TODO comment in source) until a real existing
  * buy.stripe.com URL can be pasted.
  */
 
 const BUY_LINK = /^https:\/\/buy\.stripe\.com\/[A-Za-z0-9_-]+$/;
 
-/** @typedef {"hidden" | "coming_soon" | "live"} OfferStatus */
+/** @typedef {"hidden" | "coming_soon" | "preview" | "live"} OfferStatus */
 
 export const SELF_SERVE_OFFERS = {
   list_scan: {
@@ -33,12 +37,12 @@ export const SELF_SERVE_OFFERS = {
   outlet_density: {
     id: "outlet-density",
     title: "Outlet density extract",
-    status: "coming_soon",
+    status: "preview",
     page: "https://drinkedin.net/data/outlet-density",
     // TODO: paste an existing Academic, Government, or Commercial buy.stripe.com Payment Link when live.
     paymentLink: "",
     blurb:
-      "An extract of outlet density for a chosen area. Fulfilment stays manual. Payment Links, when configured, are the ones already referenced on drinkedin.net.",
+      "An extract of outlet density for a chosen area. Fulfilment stays manual.",
   },
   licence_status_lookup: {
     id: "licence-status-lookup",
@@ -67,7 +71,9 @@ export function isLivePaymentLink(url) {
 
 export function visibleOffers(config = SELF_SERVE_OFFERS) {
   return Object.values(config).filter(
-    (item) => item && (item.status === "coming_soon" || item.status === "live")
+    (item) =>
+      item &&
+      (item.status === "coming_soon" || item.status === "preview" || item.status === "live")
   );
 }
 
@@ -80,16 +86,19 @@ function escapeHtml(value) {
 }
 
 function renderItem(item) {
-  const coming = item.status !== "live";
-  const status = coming
-    ? `<p class="offer-status">Coming soon</p>`
-    : "";
+  const live = item.status === "live";
+  const preview = item.status === "preview";
+  const status = live
+    ? ""
+    : preview
+      ? `<p class="offer-status">Preview live, ordering opens soon</p>`
+      : `<p class="offer-status">Coming soon</p>`;
   const pageLink =
-    !coming && item.page && item.page.startsWith("https://drinkedin.net/")
+    (live || preview) && item.page && item.page.startsWith("https://drinkedin.net/")
       ? `<p><a href="${escapeHtml(item.page)}" target="_blank" rel="noopener noreferrer">Open on drinkedin.net</a></p>`
       : "";
   const payLink =
-    !coming && isLivePaymentLink(item.paymentLink)
+    live && isLivePaymentLink(item.paymentLink)
       ? `<p><a class="btn btn-solid btn-sm" href="${escapeHtml(item.paymentLink)}" target="_blank" rel="noopener noreferrer">Pay with Stripe</a></p>`
       : "";
   return `<article class="self-serve-item" id="${escapeHtml(item.id)}" data-status="${escapeHtml(item.status)}">
