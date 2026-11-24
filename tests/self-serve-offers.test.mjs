@@ -22,7 +22,7 @@ test('default config: only products enabled on production are live, with no Paym
   );
   assert.deepEqual(status, {
     list_scan: 'live',
-    outlet_density: 'preview',
+    outlet_density: 'live',
     licence_status_lookup: 'live',
     lead_feed: 'live',
   });
@@ -30,16 +30,20 @@ test('default config: only products enabled on production are live, with no Paym
     assert.equal(isLivePaymentLink(item.paymentLink), false);
     assert.ok(!String(item.paymentLink).includes('buy.stripe.com'));
   }
-  // The only price on the page is the production lookup price.
+  // The only price copied onto this site is the production lookup price.
+  // Outlet density tier prices stay on https://drinkedin.net/data/outlet-density.
   assert.match(SELF_SERVE_OFFERS.licence_status_lookup.blurb, /0\.05 USDC per call/);
   for (const [key, item] of Object.entries(SELF_SERVE_OFFERS)) {
     if (key !== 'licence_status_lookup') {
       assert.ok(!JSON.stringify(item).includes('0.05'), `${key} lists a price`);
     }
   }
+  const densityBlob = JSON.stringify(SELF_SERVE_OFFERS.outlet_density);
+  assert.doesNotMatch(densityBlob, /\$750|\$1,?500|\$2,?500/);
+  assert.match(SELF_SERVE_OFFERS.outlet_density.blurb, /prices are listed on the order page/);
 });
 
-test('default render: products link to drinkedin.net; outlet density is a preview, not orderable', () => {
+test('default render: products link to drinkedin.net; outlet density is live with an order CTA', () => {
   const html = renderSelfServeOffers();
   assert.match(html, /Account-list scan/);
   assert.match(html, /Outlet density extract/);
@@ -49,21 +53,27 @@ test('default render: products link to drinkedin.net; outlet density is a previe
   assert.match(html, /href="https:\/\/drinkedin\.net\/data\/outlet-density"/);
   assert.match(html, /href="https:\/\/drinkedin\.net\/data#licence-status-lookup"/);
   assert.doesNotMatch(html, /Coming soon/);
-  assert.equal((html.match(/Preview live, ordering opens soon/g) || []).length, 1);
+  assert.doesNotMatch(html, /Preview live, ordering opens soon/);
   assert.match(html, /Fulfilment stays manual\./);
   assert.doesNotMatch(html, /when configured, are the ones already referenced/);
   assert.match(
     html,
-    /id="outlet-density" data-status="preview">\s*<h4>Outlet density extract<\/h4>\s*<p class="offer-status">Preview live, ordering opens soon<\/p>/
+    /id="outlet-density" data-status="live">\s*<h4>Outlet density extract<\/h4>\s*<p>A one-off extract/
+  );
+  assert.match(
+    html,
+    /href="https:\/\/drinkedin\.net\/data\/outlet-density"[^>]*>Order on drinkedin\.net</
   );
   assert.doesNotMatch(html, /buy\.stripe\.com/);
   assert.doesNotMatch(html, /Pay with Stripe/);
+  assert.doesNotMatch(html, /21\+/);
 });
 
 test('a preview product never gets a pay CTA, even with a real Payment Link', () => {
   const html = renderSelfServeOffers({
     outlet_density: {
       ...SELF_SERVE_OFFERS.outlet_density,
+      status: 'preview',
       paymentLink: 'https://buy.stripe.com/test_abc123',
     },
   });
@@ -160,6 +170,17 @@ test('mount fills the list and unhides the section only when something is visibl
   assert.equal(wrap.hiddenAttr, 'hidden');
 });
 
+
+test('pre-rendered index source shows live outlet density with an order CTA and no copied tier prices', () => {
+  const html = readFileSync(join(root, 'src', 'index.html'), 'utf8');
+  assert.match(html, /id="outlet-density" data-status="live"/);
+  assert.match(html, /href="https:\/\/drinkedin\.net\/data\/outlet-density"/);
+  assert.match(html, /Order on drinkedin\.net/);
+  assert.match(html, /Fulfilment stays manual\./);
+  assert.doesNotMatch(html, /Preview live, ordering opens soon/);
+  assert.doesNotMatch(html, /\$750|\$1,?500|\$2,?500/);
+  assert.doesNotMatch(html, /21\+/);
+});
 test('built index, when present, has no live self-serve Payment Link', () => {
   const index = join(root, 'dist', 'index.html');
   if (!existsSync(index)) {
