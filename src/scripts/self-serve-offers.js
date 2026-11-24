@@ -7,8 +7,10 @@
  *   - "live"         show the drinkedin.net page link, and a pay CTA only when
  *                    paymentLink is a real https://buy.stripe.com/… URL
  *
- * Default everything coming_soon. Flip a product to "live" only after that
- * feature is enabled on production drinkedin.net. Never invent a Payment Link;
+ * Flip a product to "live" only after that feature is enabled on production
+ * drinkedin.net. Live since 2026-11-24 (enabled via Emergency ops): list-scan
+ * with its free sample, the licence lead feed, and licence status lookup at
+ * 0.05 USDC. Outlet density stays coming_soon while its public page 404s. Never invent a Payment Link;
  * leave paymentLink empty (or a TODO comment in source) until a real existing
  * buy.stripe.com URL can be pasted.
  */
@@ -21,12 +23,12 @@ export const SELF_SERVE_OFFERS = {
   list_scan: {
     id: "list-scan",
     title: "Account-list scan",
-    status: "coming_soon",
+    status: "live",
     page: "https://drinkedin.net/data/list-scan",
     // TODO: paste the existing buy.stripe.com list-match Payment Link when live.
     paymentLink: "",
     blurb:
-      "Upload an account list and receive a matched extract from the registers DrinkedIn already publishes. The full file is sold through a Payment Link once one is configured.",
+      "Upload an account list and receive a matched extract from the registers DrinkedIn already publishes. A free preview of a few rows comes first; the full file is sold through a Payment Link once one is configured.",
   },
   outlet_density: {
     id: "outlet-density",
@@ -41,17 +43,17 @@ export const SELF_SERVE_OFFERS = {
   licence_status_lookup: {
     id: "licence-status-lookup",
     title: "Licence status lookup",
-    status: "coming_soon",
+    status: "live",
     page: "https://drinkedin.net/data#licence-status-lookup",
     paymentLink: "",
     payVia: "x402",
     blurb:
-      "A pay-per-call lookup of one licence number on one register, over x402 on Base. The per-call price is set on the host; this page does not list one. The answer says what the register lists and when, never that a venue is compliant.",
+      "A pay-per-call lookup of one licence number on one register, over x402 on Base, at 0.05 USDC per call. The answer says what the register lists and when, never that a venue is compliant.",
   },
   lead_feed: {
     id: "licence-lead-feed",
     title: "Weekly new-licence lead feed",
-    status: "coming_soon",
+    status: "live",
     page: "",
     paymentLink: "",
     blurb:
