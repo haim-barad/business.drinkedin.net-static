@@ -10,7 +10,8 @@
  * Flip a product to "live" only after that feature is enabled on production
  * drinkedin.net. Live since 2026-11-24 (enabled via Emergency ops): list-scan
  * with its free sample, the licence lead feed, and licence status lookup at
- * 0.05 USDC. Outlet density stays coming_soon while its public page 404s. Never invent a Payment Link;
+ * 0.05 USDC. Outlet density is live since 2026-11-24 (its public page returns 200);
+ * its tier prices are not shown here because no tier has a Payment Link yet. Never invent a Payment Link;
  * leave paymentLink empty (or a TODO comment in source) until a real existing
  * buy.stripe.com URL can be pasted.
  */
@@ -33,7 +34,7 @@ export const SELF_SERVE_OFFERS = {
   outlet_density: {
     id: "outlet-density",
     title: "Outlet density extract",
-    status: "coming_soon",
+    status: "live",
     page: "https://drinkedin.net/data/outlet-density",
     // TODO: paste an existing Academic, Government, or Commercial buy.stripe.com Payment Link when live.
     paymentLink: "",
