@@ -22,7 +22,7 @@ test('default config: only products enabled on production are live, with no Paym
   );
   assert.deepEqual(status, {
     list_scan: 'live',
-    outlet_density: 'live',
+    outlet_density: 'preview',
     licence_status_lookup: 'live',
     lead_feed: 'live',
   });
@@ -39,7 +39,7 @@ test('default config: only products enabled on production are live, with no Paym
   }
 });
 
-test('default render: every product is live and links to drinkedin.net', () => {
+test('default render: products link to drinkedin.net; outlet density is a preview, not orderable', () => {
   const html = renderSelfServeOffers();
   assert.match(html, /Account-list scan/);
   assert.match(html, /Outlet density extract/);
@@ -49,9 +49,26 @@ test('default render: every product is live and links to drinkedin.net', () => {
   assert.match(html, /href="https:\/\/drinkedin\.net\/data\/outlet-density"/);
   assert.match(html, /href="https:\/\/drinkedin\.net\/data#licence-status-lookup"/);
   assert.doesNotMatch(html, /Coming soon/);
-  assert.match(html, /id="outlet-density" data-status="live">\s*<h4>Outlet density extract<\/h4>/);
+  assert.equal((html.match(/Preview live, ordering opens soon/g) || []).length, 1);
+  assert.match(
+    html,
+    /id="outlet-density" data-status="preview">\s*<h4>Outlet density extract<\/h4>\s*<p class="offer-status">Preview live, ordering opens soon<\/p>/
+  );
   assert.doesNotMatch(html, /buy\.stripe\.com/);
   assert.doesNotMatch(html, /Pay with Stripe/);
+});
+
+test('a preview product never gets a pay CTA, even with a real Payment Link', () => {
+  const html = renderSelfServeOffers({
+    outlet_density: {
+      ...SELF_SERVE_OFFERS.outlet_density,
+      paymentLink: 'https://buy.stripe.com/test_abc123',
+    },
+  });
+  assert.match(html, /Preview live, ordering opens soon/);
+  assert.match(html, /href="https:\/\/drinkedin\.net\/data\/outlet-density"/);
+  assert.doesNotMatch(html, /Pay with Stripe/);
+  assert.doesNotMatch(html, /buy\.stripe\.com/);
 });
 
 test('a coming_soon product shows the label and no link', () => {
