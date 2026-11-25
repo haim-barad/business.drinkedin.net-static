@@ -16,11 +16,12 @@
  * 0.05 USDC, the bars-near widget at /embed/bars-near, and sample market
  * reports at /data/sample-reports. Licence-alert signup stays
  * "coming_soon" (no page link) until the privacy hold on drinkedin #833
- * is released. Outlet
- * density is "preview" since 2026-11-24: its public page returns 200 but
- * every tier is locked (no Payment Link yet), so no price is shown here.
- * Never invent a Payment Link; leave paymentLink empty (or a TODO comment
- * in source) until a real existing buy.stripe.com URL can be pasted.
+ * is released. Outlet density is also "live" since 2026-11-25: the order
+ * page is https://drinkedin.net/data/outlet-density (Academic, Government
+ * and Commercial tiers; Payment Links are on that page). Tier prices stay
+ * on that page rather than being copied here. Never invent a Payment Link;
+ * leave paymentLink empty (or a TODO comment in source) until a real
+ * existing buy.stripe.com URL can be pasted.
  */
 
 const BUY_LINK = /^https:\/\/buy\.stripe\.com\/[A-Za-z0-9_-]+$/;
@@ -41,12 +42,13 @@ export const SELF_SERVE_OFFERS = {
   outlet_density: {
     id: "outlet-density",
     title: "Outlet density extract",
-    status: "preview",
+    status: "live",
     page: "https://drinkedin.net/data/outlet-density",
+    ctaLabel: "Order on drinkedin.net",
     // TODO: paste an existing Academic, Government, or Commercial buy.stripe.com Payment Link when live.
     paymentLink: "",
     blurb:
-      "An extract of outlet density for a chosen area. Fulfilment stays manual.",
+      "A one-off extract of on-premise outlets (bars, pubs and similar) taken from official licence registers. Each row has the outlet's coordinates, its licence source, and the date we last read that register, so you can say it was on the register as of that date. A methods note comes with the file. Nothing in the extract is an estimate, and no per-capita figure is supplied. Three tiers, one price each: Academic, Government and Commercial; prices are listed on the order page. After payment the extract is generated for your order from the existing extract script. It is not delivered automatically by the order page. Fulfilment stays manual.",
   },
   licence_status_lookup: {
     id: "licence-status-lookup",
@@ -124,9 +126,13 @@ function renderItem(item) {
     : preview
       ? `<p class="offer-status">Preview live, ordering opens soon</p>`
       : `<p class="offer-status">Coming soon</p>`;
+  const ctaLabel =
+    typeof item.ctaLabel === "string" && item.ctaLabel.trim()
+      ? item.ctaLabel.trim()
+      : "Open on drinkedin.net";
   const pageLink =
     (live || preview) && item.page && item.page.startsWith("https://drinkedin.net/")
-      ? `<p><a href="${escapeHtml(item.page)}" target="_blank" rel="noopener noreferrer">Open on drinkedin.net</a></p>`
+      ? `<p><a href="${escapeHtml(item.page)}" target="_blank" rel="noopener noreferrer">${escapeHtml(ctaLabel)}</a></p>`
       : "";
   const payLink =
     live && isLivePaymentLink(item.paymentLink)
