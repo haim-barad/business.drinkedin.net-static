@@ -14,10 +14,13 @@
  * drinkedin.net. Live since 2026-11-24 (enabled via Emergency ops): list-scan
  * with its free sample, the licence lead feed, licence status lookup at
  * 0.05 USDC, the bars-near widget at /embed/bars-near, and sample market
- * reports at /data/sample-reports. Licence-alert signup stays
- * "coming_soon" (no page link) until the privacy hold on drinkedin #833
- * is released. Outlet density is also "live" since 2026-11-25: the order
- * page is https://drinkedin.net/data/outlet-density (Academic, Government
+ * reports at /data/sample-reports. The "Check your listing" lookup at
+ * https://drinkedin.net/bars/listing-check is also "live" (the page
+ * returned 200 on 2026-11-27). Licence-alert signup stays "coming_soon"
+ * (no page link): email sending is still on hold (privacy hold on
+ * drinkedin #833; digests are not sent yet). Outlet density is also
+ * "live" since 2026-11-25: the order page is
+ * https://drinkedin.net/data/outlet-density (Academic, Government
  * and Commercial tiers; Payment Links are on that page). Tier prices stay
  * on that page rather than being copied here. Never invent a Payment Link;
  * leave paymentLink empty (or a TODO comment in source) until a real
@@ -95,6 +98,15 @@ export const SELF_SERVE_OFFERS = {
     paymentLink: "",
     blurb:
       "An embeddable list of nearby listed places, for a website or blog. The install snippet on the product page loads an iframe from drinkedin.net. The list and the DrinkedIn attribution backlink are rendered inside that iframe, not in your page. A small script at https://drinkedin.net/embed/bars-near.js can build the same iframe and pass data-lat and data-lng, or ask the browser for a location. The script only sets the iframe src to an https://drinkedin.net URL. Payment is not configured yet, so the no-branding tier stays locked.",
+  },
+  listing_check: {
+    id: "listing-check",
+    title: "Check your listing",
+    status: "live",
+    page: "https://drinkedin.net/bars/listing-check",
+    paymentLink: "",
+    blurb:
+      "Look up what DrinkedIn publicly shows for one venue, how that listing was validated, and how to ask for a correction. This page is read-only: it changes nothing and does not record a correction.",
   },
 };
 

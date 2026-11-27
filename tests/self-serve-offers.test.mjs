@@ -28,6 +28,7 @@ test('default config: only products enabled on production are live, with no Paym
     sample_market_reports: 'live',
     licence_alerts: 'coming_soon',
     bars_near_widget: 'live',
+    listing_check: 'live',
   });
   for (const item of items) {
     assert.equal(isLivePaymentLink(item.paymentLink), false);
@@ -44,6 +45,18 @@ test('default config: only products enabled on production are live, with no Paym
   const densityBlob = JSON.stringify(SELF_SERVE_OFFERS.outlet_density);
   assert.doesNotMatch(densityBlob, /\$750|\$1,?500|\$2,?500/);
   assert.match(SELF_SERVE_OFFERS.outlet_density.blurb, /prices are listed on the order page/);
+  assert.equal(SELF_SERVE_OFFERS.listing_check.status, 'live');
+  assert.equal(SELF_SERVE_OFFERS.listing_check.page, 'https://drinkedin.net/bars/listing-check');
+  assert.match(
+    SELF_SERVE_OFFERS.listing_check.blurb,
+    /Look up what DrinkedIn publicly shows for one venue, how that listing was validated, and how to ask for a correction/
+  );
+  assert.match(
+    SELF_SERVE_OFFERS.listing_check.blurb,
+    /This page is read-only: it changes nothing and does not record a correction/
+  );
+  assert.doesNotMatch(JSON.stringify(SELF_SERVE_OFFERS.listing_check), /\$\d/);
+  assert.equal(SELF_SERVE_OFFERS.licence_alerts.status, 'coming_soon');
 });
 
 test('default render: products link to drinkedin.net; outlet density is live with an order CTA', () => {
@@ -55,11 +68,13 @@ test('default render: products link to drinkedin.net; outlet density is live wit
   assert.match(html, /Sample market reports/);
   assert.match(html, /Licence expiry and closure alerts/);
   assert.match(html, /Bars near here widget/);
+  assert.match(html, /Check your listing/);
   assert.match(html, /href="https:\/\/drinkedin\.net\/data\/list-scan"/);
   assert.match(html, /href="https:\/\/drinkedin\.net\/data\/outlet-density"/);
   assert.match(html, /href="https:\/\/drinkedin\.net\/data\/sample-reports"/);
   assert.doesNotMatch(html, /href="https:\/\/drinkedin\.net\/data\/licence-alerts"/);
   assert.match(html, /href="https:\/\/drinkedin\.net\/embed\/bars-near"/);
+  assert.match(html, /href="https:\/\/drinkedin\.net\/bars\/listing-check"/);
   assert.match(html, /href="https:\/\/drinkedin\.net\/data#licence-status-lookup"/);
   assert.match(html, /Digests are generated, but they are not sent yet\./);
   assert.match(html, /the full report stays locked/);
@@ -80,6 +95,10 @@ test('default render: products link to drinkedin.net; outlet density is live wit
   assert.match(
     html,
     /href="https:\/\/drinkedin\.net\/data\/outlet-density"[^>]*>Order on drinkedin\.net</
+  );
+  assert.match(
+    html,
+    /id="listing-check" data-status="live">\s*<h4>Check your listing<\/h4>\s*<p>Look up what DrinkedIn publicly shows/
   );
   assert.doesNotMatch(html, /buy\.stripe\.com/);
   assert.doesNotMatch(html, /Pay with Stripe/);
@@ -193,6 +212,14 @@ test('pre-rendered index source shows live outlet density with an order CTA and 
   assert.doesNotMatch(html, /Preview live, ordering opens soon/);
   assert.doesNotMatch(html, /\$750|\$1,?500|\$2,?500/);
   assert.doesNotMatch(html, /21\+/);
+  assert.match(html, /id="listing-check" data-status="live"/);
+  assert.match(html, /href="https:\/\/drinkedin\.net\/bars\/listing-check"/);
+  assert.match(html, /Check your listing/);
+  assert.match(html, /This page is read-only: it changes nothing and does not record a correction/);
+  assert.match(
+    html,
+    /id="licence-alerts" data-status="coming_soon">\s*<h4>Licence expiry and closure alerts<\/h4>\s*<p class="offer-status">Coming soon<\/p>/
+  );
 });
 
 test('built index, when present, has no live self-serve Payment Link', () => {

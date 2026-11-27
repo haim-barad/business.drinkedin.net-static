@@ -196,6 +196,14 @@ test('robots.txt allows the same AI crawlers as the main site and llms.txt point
   assert.match(robots, /Sitemap: https:\/\/business\.drinkedin\.net\/sitemap\.xml/);
   const llms = readDist('llms.txt');
   assert.match(llms, /^Platform overview for agents: https:\/\/drinkedin\.net\/llms\.txt$/m);
+  assert.match(llms, /DrinkedIn can also turn on a check of licence hours/);
+  assert.match(
+    llms,
+    /a venue is not used as the last stop if every time window in which its official licence register allows it to sell alcohol/
+  );
+  assert.match(llms, /These are the hours a licence allows, not opening hours/);
+  assert.match(llms, /It states no prices, and it does not state opening hours/);
+  assert.doesNotMatch(llms, /21\+/);
 });
 
 test('the build output does not contain the age-gate shorthand', () => {
